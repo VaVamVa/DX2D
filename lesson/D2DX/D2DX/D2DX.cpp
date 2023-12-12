@@ -3,6 +3,20 @@
 
 #define MAX_LOADSTRING 100
 
+struct Vertex // 정점 : 3차원 공간에서의 한 점
+{
+    DirectX::XMFLOAT3 pos = {};  // x, y, z
+    DirectX::XMFLOAT4 color = {};
+
+    Vertex(float x, float y)
+        :pos(x, y, 0.0f) {}
+
+    Vertex(float x, float y, float r, float g, float b)
+        :pos(x, y, 0.0f), color(r, g, b, 1) {}
+};
+
+std::vector<Vertex> vertices;
+
 HINSTANCE hInst;
 HWND hWnd;
 WCHAR szTitle[MAX_LOADSTRING];
@@ -27,6 +41,12 @@ V_RAM과 RAM을 이어주는 매개체.
 보통 V_RAM은 Render의 역할만 하기 때문에 RAM에서 V_RAM으로 정보를 보내는데 이용된다.
 */
 ID3D11RenderTargetView* rtv;
+
+///////// shader 적용부
+ID3D11VertexShader* vertexShader;
+ID3D11PixelShader* pixelShader;
+ID3D11InputLayout* inputLayout;
+ID3D11Buffer* vertexBuffer;
 
 void Init();
 void Render();
@@ -131,6 +151,7 @@ void Init()
         nullptr, 0,
         // SDK 버전
         D3D11_SDK_VERSION,
+        // double ptr 형태로 변수를 넘겨 인터페이스들을 할당해 준다.
         &swapChainDesc,
         &swapChain,
         &device,
@@ -151,12 +172,145 @@ void Init()
 
     // rtv에 있는 정보로 출력해라. deviceContext => GPU => 출력용
     deviceContext->OMSetRenderTargets(1, &rtv, nullptr);
+
+
+    //// shader 적용부
+    D3D11_VIEWPORT viewPort = {};
+    // 정규화 된 3차원 공간을 viewPort의 크기 만큼 2차원으로 변환하여 화면에 출력한다.
+    viewPort.Width = width;
+    viewPort.Height = height;
+    viewPort.MinDepth = 0.0f;
+    viewPort.MaxDepth = 1.0f;
+    viewPort.TopLeftX = 0.0f;
+    viewPort.TopLeftY = 0.0f;
+
+    deviceContext->RSSetViewports(1, &viewPort);
+
+    DWORD flags = D3DCOMPILE_ENABLE_STRICTNESS | D3DCOMPILE_DEBUG;
+
+    ID3DBlob* vertexBlob;
+    // 4번째 매개변수 : 진입점
+    D3DCompileFromFile(L"Shaders/Tutorial.hlsl", nullptr, nullptr,
+        "VS", "vs_5_0", flags,
+        0, &vertexBlob, nullptr
+    );
+
+    // vertex shader용 buffer 생성
+    device->CreateVertexShader(
+        vertexBlob->GetBufferPointer(), vertexBlob->GetBufferSize(),
+        nullptr, &vertexShader
+    );
+
+    // sementic number = default 0. 아니면 뒤에 숫자 적어넣음
+    // 쉐이더가 가지고있는 속성 수 대로 배열 원소 생성
+    D3D11_INPUT_ELEMENT_DESC layoutDesc[] =
+    {
+        {"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0,
+        D3D11_INPUT_PER_VERTEX_DATA, 0},
+        {"COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12,  // 앞에 당겨진 바이트 수 입력
+        D3D11_INPUT_PER_VERTEX_DATA, 0}
+    };
+
+    UINT layoutSize = ARRAYSIZE(layoutDesc);
+
+    device->CreateInputLayout(layoutDesc, layoutSize,
+        vertexBlob->GetBufferPointer(), vertexBlob->GetBufferSize(),
+        &inputLayout
+    );
+
+    ID3DBlob* pixelBlob;
+    // 4번째 매개변수 : 진입점
+    D3DCompileFromFile(L"Shaders/Tutorial.hlsl", nullptr, nullptr,
+        "PS", "ps_5_0",
+        flags, 0, &pixelBlob, nullptr
+    );
+
+    device->CreatePixelShader(
+        pixelBlob->GetBufferPointer(), pixelBlob->GetBufferSize(),
+        nullptr, &pixelShader
+    );
+
+    // Polygon : 정점 3개로 이루어진 삼각형
+    // 정점 순서에 따라 시계방향이 앞면을 의미하며, 앞면만 출력.
+    // 시계 반대방향으로 돌리면, 뒷면(출력되지 않는 면)이 화면을 바라보게 됨.
+
+    /* tri_list to rect
+    vertices.emplace_back(+0.5f, +0.5f);
+    vertices.emplace_back(+0.5f, -0.5f);
+    vertices.emplace_back(-0.5f, -0.5f);
+
+    vertices.emplace_back(-0.5f, -0.5f);
+    vertices.emplace_back(-0.5f, +0.5f);
+    vertices.emplace_back(+0.5f, +0.5f);
+    */
+
+    /* tri_strip to rect
+    vertices.emplace_back(+0.5f, +0.5f, 1, 0, 0);  // 첫번째 strip은 시계 방향으로
+    vertices.emplace_back(+0.5f, -0.5f, 1, 1, 1);  // 두번째 strip 부터 시계 반대로.
+    vertices.emplace_back(-0.5f, +0.5f, 0, 0, 1);
+    vertices.emplace_back(-0.5f, -0.5f, 0, 1, 0);
+    */
+
+    /* tri_strip to penta
+    vertices.emplace_back(0.0f, 0.5f, 0, 1, 0);
+    vertices.emplace_back(0.5f, 0.0f, 0, 1, 0);
+    vertices.emplace_back(-0.5f, 0.0f, 0, 1, 0);
+    vertices.emplace_back(0.25f, -0.5f, 0, 1, 0);
+    vertices.emplace_back(-0.25f, -0.5f, 0, 1, 0);
+    */
+    int n = 5;
+
+    FOR(i, 0, n)
+    {
+        vertices.emplace_back(0.5f * (i % 3), 0.5f * (i % 3), 0, 1, 0);
+    }
+
+    // buffer : VRAM에 할당되는 메모리
+    D3D11_BUFFER_DESC bufferDesc = {};
+    bufferDesc.Usage = D3D11_USAGE_DEFAULT;
+    bufferDesc.ByteWidth = sizeof(Vertex) * vertices.size();
+    bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+
+    D3D11_SUBRESOURCE_DATA initData = {};
+    initData.pSysMem = vertices.data();  // 첫 주소
+
+    device->CreateBuffer(&bufferDesc, &initData, &vertexBuffer);
 }
 
+/*
+* Rendering Pipeline
+GPU가 화면에 출력하는 과정
+1. Input Assembler(IA) : CPU에 있는 정보를 가져오는 단계
+2. Vertex Shader : 정점 쉐이더
+(3.) Hull Shader, tS, Depth Stencil, Geometry Shader
+4. Rasterizer State : NDC 좌표를 출력하기 위해 viewPort 변환을 해주는 과정.
+    - 또한 폴리곤(STRIP)에서 color를 선형보간으로 채워준다.
+5. Pixel Shader
+6. OM : Output Merge
+
+Shader : GPU 언어. - 우리가 짜야하는 스크립트
+    - hlsl(hi-level shader language)
+    - 확장-확장 관리-HLSL Tool for Visual Studio 검색/설치
+        - 만약 자동으로 작업관리자 Manage bar 보일경우 해당 버튼 클릭 후 추가설치 X
+    - 프로젝트 속성-HLSL 컴파일러-진입점 이름 : VS, 셰이더 모델 ShaderModel 5.0 (DX11 용)
+*/
 void Render()
 {
     float clearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f };  // (임의값) window tutorial 기준 색.
     deviceContext->ClearRenderTargetView(rtv, clearColor);  // 한번 클리어
+
+    UINT stride = sizeof(Vertex);  // 정점 하나의 크기
+    UINT offset = 0;
+
+    deviceContext->IASetInputLayout(inputLayout);
+
+    deviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset);
+    deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);  // 점찍기
+
+    deviceContext->VSSetShader(vertexShader, nullptr, 0);
+    deviceContext->PSSetShader(pixelShader, nullptr, 0);
+
+    deviceContext->Draw(vertices.size(), 0);  // 렌더링 파이프라인 실행
 
     // backBuffer에 정보 담기
     swapChain->Present(0, 0);
