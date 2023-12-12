@@ -138,7 +138,7 @@ void Init()
         &deviceContext
     );
 
-    // RAM에 할당되는(CPU) 정보들
+    // (CPU에 의해) RAM에 할당되는 정보들
     ID3D11Texture2D* backBuffer;
 
     /*
