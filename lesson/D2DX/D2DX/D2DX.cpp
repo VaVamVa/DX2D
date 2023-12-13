@@ -286,8 +286,8 @@ void Render()
     deviceContext->IASetInputLayout(inputLayout);
 
     deviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset);
-    //변경 전 값 D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP
-    deviceContext->IASetPrimitiveTopology(topology);
+    
+    deviceContext->IASetPrimitiveTopology(topology); //변경 전 값 D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP
 
     deviceContext->VSSetShader(vertexShader, nullptr, 0);
     deviceContext->PSSetShader(pixelShader, nullptr, 0);
