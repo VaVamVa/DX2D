@@ -18,7 +18,7 @@ Shader 스크립트 만들기 (Vertex Shader, Pixel Shader) with Rendering Pipel
 #### 과제
 - [n각형 그리기](lesson/D2DX/DX2D_Polygon.md)
     - [content_diff](https://github.com/VaVamVa/DX2D/commit/d24c9f0f0a10abf64334369e41181b60a2b805aa)
-- [DirectX 렌더링 파이프라인](lesson D2DX/DX2D_Rendering_Pipeline.md)
+- [DirectX 렌더링 파이프라인](lesson/D2DX/DX2D_Rendering_Pipeline.md)
 
 <br>
 
