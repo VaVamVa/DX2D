@@ -45,6 +45,8 @@ DirectX 9 부터는 3D 라이브러리가 모두 추가되며,
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d3dcompiler.lib")
 
+#include "Utility/Singleton.h"
+#include "Utility/VirtualKeyboard.h"
 
 #include "Utility/macro.h"
 

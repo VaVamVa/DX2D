@@ -52,6 +52,12 @@ void Init();
 void Render();
 void Release();
 
+// 임의 update. 추후 프레임워크 만들 시 지워야함.
+int vertexNumber = 3;
+float radius = 0.5f;
+D3D_PRIMITIVE_TOPOLOGY topology = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP;
+void Update();
+
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -92,7 +98,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
         else
         {
+            Update();
             Render();
+            V_KEY->Update();
         }
     }
 
@@ -230,39 +238,12 @@ void Init()
         nullptr, &pixelShader
     );
 
-    // Polygon : 정점 3개로 이루어진 삼각형
-    // 정점 순서에 따라 시계방향이 앞면을 의미하며, 앞면만 출력.
-    // 시계 반대방향으로 돌리면, 뒷면(출력되지 않는 면)이 화면을 바라보게 됨.
-
-    /* tri_list to rect
-    vertices.emplace_back(+0.5f, +0.5f);
-    vertices.emplace_back(+0.5f, -0.5f);
-    vertices.emplace_back(-0.5f, -0.5f);
-
-    vertices.emplace_back(-0.5f, -0.5f);
-    vertices.emplace_back(-0.5f, +0.5f);
-    vertices.emplace_back(+0.5f, +0.5f);
-    */
-
-    /* tri_strip to rect
-    vertices.emplace_back(+0.5f, +0.5f, 1, 0, 0);  // 첫번째 strip은 시계 방향으로
-    vertices.emplace_back(+0.5f, -0.5f, 1, 1, 1);  // 두번째 strip 부터 시계 반대로.
-    vertices.emplace_back(-0.5f, +0.5f, 0, 0, 1);
-    vertices.emplace_back(-0.5f, -0.5f, 0, 1, 0);
-    */
-
-    /* tri_strip to penta
-    vertices.emplace_back(0.0f, 0.5f, 0, 1, 0);
-    vertices.emplace_back(0.5f, 0.0f, 0, 1, 0);
-    vertices.emplace_back(-0.5f, 0.0f, 0, 1, 0);
-    vertices.emplace_back(0.25f, -0.5f, 0, 1, 0);
-    vertices.emplace_back(-0.25f, -0.5f, 0, 1, 0);
-    */
-    int n = 5;
-
-    FOR(i, 0, n)
+    float aVertexAngle = 2.0f * PI / vertexNumber;
+    FOR(i, 0, vertexNumber)
     {
-        vertices.emplace_back(0.5f * (i % 3), 0.5f * (i % 3), 0, 1, 0);
+        vertices.emplace_back(0, 0, 1, 1, 1);
+        vertices.emplace_back(radius * sin(aVertexAngle * i), radius * cos(aVertexAngle * i), 0, 1, 0);
+        vertices.emplace_back(radius * sin(aVertexAngle * (i + 1)), radius * cos(aVertexAngle * (i + 1)), 0, 0, 1);
     }
 
     // buffer : VRAM에 할당되는 메모리
@@ -305,7 +286,8 @@ void Render()
     deviceContext->IASetInputLayout(inputLayout);
 
     deviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset);
-    deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);  // 점찍기
+    //변경 전 값 D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP
+    deviceContext->IASetPrimitiveTopology(topology);
 
     deviceContext->VSSetShader(vertexShader, nullptr, 0);
     deviceContext->PSSetShader(pixelShader, nullptr, 0);
@@ -323,6 +305,123 @@ void Release()
 
     swapChain->Release();
     rtv->Release();
+}
+
+void Update()
+{
+    bool controlFlag = true;
+    if (V_KEY->Down(VK_UP))
+    {
+        vertexNumber++;
+        vertices.clear();
+        controlFlag = false;
+    }
+    if (vertexNumber > 3 && V_KEY->Down(VK_DOWN))
+    {
+        vertexNumber--;
+        vertices.clear();
+        controlFlag = false;
+    }
+
+    if (radius < 1.0f && V_KEY->Down(VK_RIGHT))
+    {
+        radius += 0.1f;
+        vertices.clear();
+        controlFlag = false;
+    }
+    if (radius > 0.1f && V_KEY->Down(VK_LEFT))
+    {
+        radius -= 0.1f;
+        vertices.clear();
+        controlFlag = false;
+    }
+
+    if (V_KEY->Down(VK_SPACE))
+    {
+        vertices.clear();
+        controlFlag = false;
+        topology = topology == D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP ? D3D11_PRIMITIVE_TOPOLOGY_LINELIST : D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP;
+    }
+
+    if (controlFlag)
+        return;
+
+    // Polygon(strip) : 정점 3개로 이루어진 삼각형
+    // 정점 순서에 따라 시계방향이 앞면을 의미하며, 앞면만 출력.
+    // 시계 반대방향으로 돌리면, 뒷면(출력되지 않는 면)이 화면을 바라보게 됨.
+
+    /* tri_list to rect
+    vertices.emplace_back(+0.5f, +0.5f);
+    vertices.emplace_back(+0.5f, -0.5f);
+    vertices.emplace_back(-0.5f, -0.5f);
+
+    vertices.emplace_back(-0.5f, -0.5f);
+    vertices.emplace_back(-0.5f, +0.5f);
+    vertices.emplace_back(+0.5f, +0.5f);
+    */
+
+    /* tri_strip to rect
+    vertices.emplace_back(+0.5f, +0.5f, 1, 0, 0);  // 첫번째 strip은 시계 방향으로
+    vertices.emplace_back(+0.5f, -0.5f, 1, 1, 1);  // 두번째 strip 부터 시계 반대로.
+    vertices.emplace_back(-0.5f, +0.5f, 0, 0, 1);
+    vertices.emplace_back(-0.5f, -0.5f, 0, 1, 0);
+    */
+
+    /* tri_strip to penta
+    vertices.emplace_back(0.0f, 0.5f, 0, 1, 0);
+    vertices.emplace_back(0.5f, 0.0f, 0, 1, 0);
+    vertices.emplace_back(-0.5f, 0.0f, 0, 1, 0);
+    vertices.emplace_back(0.25f, -0.5f, 0, 1, 0);
+    vertices.emplace_back(-0.25f, -0.5f, 0, 1, 0);
+    */
+
+    // Polygon
+    float aVertexRadian = 2.0f * PI / vertexNumber;
+    switch (topology)
+    {
+    case D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP:
+    {
+        if (vertexNumber % 2)
+        {
+            FOR(i, 1, vertexNumber + 1)
+            {
+                vertices.emplace_back(0, 0, 1, 1, 1);
+                vertices.emplace_back(radius * sin(aVertexRadian * i), radius * cos(aVertexRadian * i), 1, 0, 0);
+                vertices.emplace_back(radius * sin(aVertexRadian * (i + 1)), radius * cos(aVertexRadian * (i + 1)), 0, 0, 1);
+            }
+        }
+        else
+        {
+            FOR(i, 1, vertexNumber + 1)
+            {
+                vertices.emplace_back(0, 0, 1, 1, 1);
+                vertices.emplace_back(radius * cos(aVertexRadian * i), radius * sin(aVertexRadian * i), 1, 0, 0);
+                vertices.emplace_back(radius * cos(aVertexRadian * (i + 1)), radius * sin(aVertexRadian * (i + 1)), 0, 0, 1);
+            }
+        }
+        break;
+    }
+    case D3D11_PRIMITIVE_TOPOLOGY_LINELIST:
+    {
+        FOR(i, 0, vertexNumber)
+        {
+            vertices.emplace_back(radius * sin(aVertexRadian * i), radius * cos(aVertexRadian * i), 1, 0, 0);
+            vertices.emplace_back(radius * sin(aVertexRadian * (i + 1)), radius * cos(aVertexRadian * (i + 1)), 0, 0, 1);
+        }
+        break;
+    }
+    }
+
+    // buffer : VRAM에 할당되는 메모리
+    D3D11_BUFFER_DESC bufferDesc = {};
+    bufferDesc.Usage = D3D11_USAGE_DEFAULT;
+    bufferDesc.ByteWidth = sizeof(Vertex) * vertices.size();
+    bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+
+    D3D11_SUBRESOURCE_DATA initData = {};
+    initData.pSysMem = vertices.data();  // 첫 주소
+
+    device->CreateBuffer(&bufferDesc, &initData, &vertexBuffer);
 }
 
 

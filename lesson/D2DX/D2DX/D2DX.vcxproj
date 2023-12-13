@@ -138,9 +138,12 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Utility\macro.h" />
+    <ClInclude Include="Utility\Singleton.h" />
+    <ClInclude Include="Utility\VirtualKeyboard.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D2DX.cpp" />
+    <ClCompile Include="Utility\VirtualKeyboard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="D2DX.rc" />
