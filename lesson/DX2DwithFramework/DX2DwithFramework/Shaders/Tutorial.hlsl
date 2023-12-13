@@ -1,8 +1,3 @@
-//Tutorial.hlsl
-
-// 콜론 뒤 이름 == Sementic : 매개변수 및 반환값 정보를 어떻게 사용할지 이름 붙이는 것
-// SV : System Value : 우리가 짜지 않는 스크립트들이 System이라 생각하면 편함.
-
 struct VertexInput
 {
     float4 pos : POSITION;
@@ -15,9 +10,14 @@ struct PixelInput
     float4 color : COLOR;
 };
 
-cbuffer WorldBuffer : register(b0)
+/*
+cbuffer == constant buffer : 하지만 매우 동적으로 데이터가 변하는데,
+쉐이더의 입장(쉐이더 연산 중)에는 상수처럼 변하지 않는 수 이기 때문.
+*/
+cbuffer WorldBuffer : register(b0) // buffer slot
 {
     matrix world;
+    // matrix == float4x4 : 4*4 행렬
 }
 
 cbuffer ViewBuffer : register(b1)
@@ -41,7 +41,7 @@ PixelInput VS(VertexInput input) // Vertex Shader
     
     output.color = input.color;
     
-	return output;
+    return output;
 }
 
 float4 PS(PixelInput input) : SV_TARGET // Pixel Shader

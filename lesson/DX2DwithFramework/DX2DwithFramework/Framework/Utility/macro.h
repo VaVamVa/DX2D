@@ -11,8 +11,8 @@
 constexpr int WIN_START_X = 100;
 constexpr int WIN_START_Y = 10;
 
-constexpr int SCREEN_WIDTH = 900;
-constexpr int SCREEN_HEIGHT = 900;
+constexpr int SCREEN_WIDTH = 1280;
+constexpr int SCREEN_HEIGHT = 720;
 
 constexpr int CENTER_X = SCREEN_WIDTH >> 1;
 constexpr int CENTER_Y = SCREEN_HEIGHT >> 1;

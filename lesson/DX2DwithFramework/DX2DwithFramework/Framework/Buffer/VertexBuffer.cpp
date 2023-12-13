@@ -5,7 +5,7 @@ VertexBuffer::VertexBuffer(void* data, UINT stride, UINT count)
 {
     D3D11_BUFFER_DESC bufferDesc = {};
     bufferDesc.Usage = D3D11_USAGE_DEFAULT;
-    bufferDesc.ByteWidth = sizeof(stride) * count;
+    bufferDesc.ByteWidth = stride * count;
     bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 
     D3D11_SUBRESOURCE_DATA initData = {};

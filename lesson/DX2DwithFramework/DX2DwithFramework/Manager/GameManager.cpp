@@ -28,9 +28,9 @@ GameManager::~GameManager()
 
 void GameManager::Update()
 {
-	scene->Update();
-
 	V_KEY->Update();
+
+	scene->Update();
 }
 
 void GameManager::Render()
