@@ -15,7 +15,7 @@ DirectX 초기화 - device, device context 에 대한 DESC 입력 및 인터페�
 Shader 스크립트 만들기 (Vertex Shader, Pixel Shader) with Rendering Pipeline
 - [content_diff](https://github.com/VaVamVa/DX2D/commit/afc45d158c08266274633960fbd010fb9cf9804a)
     - D2DX.cpp
-    - Shader Script의 컴파일을 위한 컴파일 진입점과 Shader Model version을 정해줘야 함.
+    - Shader Script의 컴파일을 위한 HLSL 컴파일 진입점과 Shader Model version을 정해줘야 함.
         - 수업 pjt의 경우, VS가 첫 함수이므로 VS를 진입점으로 잡고, Shader Model은 DX11에서 version 5.0으로 지정.
 #### 과제
 - [n각형 그리기](lesson/D2DX/DX2D_Polygon.md)
@@ -25,7 +25,7 @@ Shader 스크립트 만들기 (Vertex Shader, Pixel Shader) with Rendering Pipel
 
 ### 3. 231213
 `1`, `2` 내용을 기반으로 Framework 구축하기
-- [content_diff]()
+- [content_diff](https://github.com/VaVamVa/DX2D/commit/26557ec506220713760249e319f45f8f3f570d5c)
     - project 전체적으로.
 ```
 Framework/
