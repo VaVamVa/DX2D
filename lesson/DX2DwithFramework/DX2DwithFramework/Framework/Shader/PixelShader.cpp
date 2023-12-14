@@ -8,8 +8,8 @@ PixelShader::PixelShader(std::wstring file)
     // 4번째 매개변수 : 진입점
     D3DCompileFromFile(
         file.c_str(), nullptr, nullptr,
-        "PS", "ps_5_0",
-        flags, 0, &pixelBlob, nullptr
+        "PS", "ps_5_0", flags,
+        0, &pixelBlob, nullptr
     );
 
     DEVICE->CreatePixelShader(

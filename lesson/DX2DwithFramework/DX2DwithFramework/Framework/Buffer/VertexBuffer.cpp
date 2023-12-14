@@ -9,6 +9,7 @@ VertexBuffer::VertexBuffer(void* data, UINT stride, UINT count)
     bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 
     D3D11_SUBRESOURCE_DATA initData = {};
+    // 정점 버퍼를 초기화할 자료를 담은 시스템 메모리 배열을 가리키는 포인터.
     initData.pSysMem = data;  // 첫 주소
 
     DEVICE->CreateBuffer(&bufferDesc, &initData, &buffer);

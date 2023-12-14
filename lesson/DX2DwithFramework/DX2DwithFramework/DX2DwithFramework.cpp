@@ -87,8 +87,16 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance;
 
+   RECT winRect = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+
+   AdjustWindowRect(&winRect, WS_OVERLAPPEDWINDOW, false);
+
    hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+       WIN_START_X, WIN_START_Y,
+       winRect.right - winRect.left, winRect.bottom - winRect.top,
+       nullptr, nullptr, hInstance, nullptr);
+
+   SetMenu(hWnd, nullptr);
 
    if (!hWnd)
    {

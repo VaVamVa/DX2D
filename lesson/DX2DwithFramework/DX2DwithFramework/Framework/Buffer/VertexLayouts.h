@@ -2,8 +2,8 @@
 
 struct Vertex
 {
-    DirectX::XMFLOAT3 pos = {};
-    DirectX::XMFLOAT4 color = {};
+    Float3 pos = {};
+    Float4 color = {};
 
     Vertex(float x, float y)
         :pos(x, y, 0.0f) {}

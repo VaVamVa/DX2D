@@ -33,7 +33,7 @@ GPU가 화면에 출력하는 과정
 2. Vertex Shader : 정점 쉐이더
 (3.) Hull Shader, tS, Depth Stencil, Geometry Shader
 4. Rasterizer State : NDC 좌표를 출력하기 위해 viewPort 변환을 해주는 과정.
-    - 또한 폴리곤(STRIP)에서 color를 선형보간으로 채워준다.
+    - 또한 폴리곤에서 color를 선형보간으로 채워준다.
 5. Pixel Shader
 6. OM : Output Merge
 <br>
@@ -54,7 +54,7 @@ Shader : GPU 언어. - 우리가 짜야하는 스크립트
 1. (5.5) Input Assemler : 메모리에서 기하 자료를 읽어서 기하학적 기본도형 조립
 2. (5.6) Vertex Shader : (개발자 이용) 정점 하나를 받아서 정점 하나를 <b>출력</b>하는 함수들의 수행
 3. (5.7) Tessellation : 한 mesh의 삼각형들을 더 잘게 쪼개서 더 세밀한 삼각형 생성
-4. (5.8)Geometry Shader : (생략 가능) 하나의 온전한 기본도형을 입력 받아 임의로 변형
+4. (5.8) Geometry Shader : (생략 가능) 하나의 온전한 기본도형을 입력 받아 임의로 변형
 	- Stream Output : RAM에 일시 저장
 5. (5.9) Clipping : 절두체를 벗어난 기하구조 폐기
 6. (5.10) Rasterization Stage : 투영된 3차원 삼각형으로부터 픽셀 색상 계산

@@ -27,10 +27,11 @@ Shader 스크립트 만들기 (Vertex Shader, Pixel Shader) with Rendering Pipel
 `1`, `2` 내용을 기반으로 Framework 구축하기
 - [content_diff](https://github.com/VaVamVa/DX2D/commit/26557ec506220713760249e319f45f8f3f570d5c)
     - project 전체적으로.
+- 물방울책 4장~6장
 ```
 Framework/
     - Render [Device, DC, swap chain, rtv]
-    - Shader [VS, PS]
+    - Shader [VS, PS] - 6장 p.211
     - Buffer [Vertex(with Layout), Index, Constant(in Global)]
 
 Manager/ GameManager : set viewport, Alloc Scene
