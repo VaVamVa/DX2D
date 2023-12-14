@@ -49,8 +49,19 @@ Shaders/ Tutorial.hlsl : structs for Vertex & Pixel , 3 const buffers for wvp tr
 
 ### 4. 231214
 객체 SRT 구현
-- [content_diff]()
+- [content_diff](https://github.com/VaVamVa/DX2D/commit/d9b2fc7f7b0142588afba8062d258f70859dbf70)
     - project
+```
+Framework/
+    - Environment : viewport, projection buffer
+
+Scenes/ SRT scene : Alloc&Set object, Alloc&Set world buffer,
+    matWorld : for matrix calculate, wolrd matrix for setting world buffer,
+    object attributes
+
+Objects for init vertices to vertex buffer&shader (with pixel buffer&shader)
+```
+
 1. viewport 생성&설정 및 view buffer, projection buffer 생성&설정을 Environment 객체로 뺌.
     - Framework/Environment
 2. SRT scene 를 새로 만듦. world buffer를 이 객체에 선언&할당
