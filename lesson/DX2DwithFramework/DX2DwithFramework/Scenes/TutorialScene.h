@@ -19,8 +19,6 @@ private:
 	IndexBuffer* indexBuffer;
 
 	MatrixBuffer* worldBuffer;
-	MatrixBuffer* viewBuffer;
-	MatrixBuffer* projectionBuffer;
 
 	std::vector<Vertex> vertices;
 	std::vector <UINT> indices;

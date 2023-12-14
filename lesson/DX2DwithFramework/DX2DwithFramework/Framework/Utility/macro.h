@@ -20,5 +20,7 @@ constexpr int CENTER_Y = SCREEN_HEIGHT >> 1;
 constexpr float PI = 3.141592;
 
 #define V_KEY VirtualKeyboard::Get()
+#define DELTA GameTimer::Get()->GetElapsedTime()
+
 #define DEVICE Device::Get()->GetDevice()
 #define DC Device::Get()->GetDeviceContext()

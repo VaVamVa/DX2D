@@ -2,33 +2,33 @@
 #include "GameManager.h"
 
 #include "Scenes/TutorialScene.h"
+#include "Scenes/SRTScene.h"
+#include "Scenes/PlaneScene.h"
 
 GameManager::GameManager()
 {
-	D3D11_VIEWPORT viewPort = {};
-	// 정규화 된 3차원 공간을 viewPort의 크기 만큼 2차원으로 변환하여 화면에 출력한다.
-	viewPort.Width = SCREEN_WIDTH;
-	viewPort.Height = SCREEN_HEIGHT;
-	viewPort.MinDepth = 0.0f;
-	viewPort.MaxDepth = 1.0f;
-	viewPort.TopLeftX = 0.0f;
-	viewPort.TopLeftY = 0.0f;
+	GameTimer::Get();
+	V_KEY;
 
-	DC->RSSetViewports(1, &viewPort);
+	Environment::Get();
 
-	scene = new TutorialScene();
+	//scene = new TutorialScene();
+	//scene = new SRTScene();
+	scene = new PlaneScene();
 }
 
 GameManager::~GameManager()
 {
 	delete scene;
 
+	Environment::Delete();
 	Device::Delete();
 }
 
 void GameManager::Update()
 {
 	V_KEY->Update();
+	GameTimer::Get()->Update();
 
 	scene->Update();
 }

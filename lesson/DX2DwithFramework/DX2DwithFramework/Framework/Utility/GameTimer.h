@@ -12,7 +12,7 @@ private:
 
 public:
 	void Update();
-	void Render(HDC hdc);
+	//void Render(HDC hdc);
 
 	float GetElapsedTime() { return elapsedTime > EPSILON ? EPSILON : elapsedTime * deltaScale; }
 	void SetDeltaScale(float value = 1.0f) { this->deltaScale = value; }

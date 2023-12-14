@@ -46,6 +46,8 @@ typedef DirectX::XMMATRIX Matrix;
 #include "Framework/Buffer/VertexLayouts.h"
 #include "Framework/Buffer/GlobalBuffer.h"
 
+#include "Framework/Environment/Environment.h"
+
 #include "Framework/Utility/VirtualKeyboard.h"
 #include "Framework/Utility/Random.h"
 #include "Framework/Utility/GameTimer.h"
@@ -54,7 +56,7 @@ typedef DirectX::XMMATRIX Matrix;
 #include "Framework/Utility/macro.h"
 
 // Object Header
-
+#include "Objects/Basic/Rect.h"
 
 // Scene Header
 #include "Scenes/Scene.h"
@@ -63,3 +65,4 @@ typedef DirectX::XMMATRIX Matrix;
 
 
 extern HWND hWnd;
+extern Float2 mousePos;

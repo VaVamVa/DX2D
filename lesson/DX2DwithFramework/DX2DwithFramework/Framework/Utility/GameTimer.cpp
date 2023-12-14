@@ -26,12 +26,12 @@ void GameTimer::Update()
 	lastTime = currentTime;
 }
 
-void GameTimer::Render(HDC hdc)
-{
-	std::wstring str = L"FPS : " + std::to_wstring(frameRate);
-	TextOut(hdc, 5, 5, str.c_str(), str.size());
-	/*
-	str = L"Delta : " + std::to_wstring(elapsedTime);
-	W_TEXT(hdc, 5, 20, str);
-	*/
-}
+//void GameTimer::Render(HDC hdc)
+//{
+//	std::wstring str = L"FPS : " + std::to_wstring(frameRate);
+//	TextOut(hdc, 5, 5, str.c_str(), str.size());
+//	/*
+//	str = L"Delta : " + std::to_wstring(elapsedTime);
+//	W_TEXT(hdc, 5, 20, str);
+//	*/
+//}

@@ -16,6 +16,8 @@ cbuffer == constant buffer : 하지만 매우 동적으로 데이터가 변하는데,
 */
 cbuffer WorldBuffer : register(b0) // buffer slot
 {
+    // vertex group의 수월한 동작을 가능하게 해줌.
+    // 매번 vertices를 찍는게 아닌, 이들을 그대로 이동, 회전 등 가능하게 함.
     matrix world;
     // matrix == float4x4 : 4*4 행렬
 }

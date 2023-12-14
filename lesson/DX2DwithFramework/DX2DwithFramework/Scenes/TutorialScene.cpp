@@ -33,17 +33,7 @@ TutorialScene::TutorialScene()
 	indexBuffer = new IndexBuffer(indices.data(), indices.size());
 
 	worldBuffer = new MatrixBuffer();
-	viewBuffer = new MatrixBuffer();
-	projectionBuffer = new MatrixBuffer();  // "Åõ¿µ"
 
-	// 2D¿ë Á÷À°¸éÃ¼ Åõ¿µ¿ë ÀıµÎÃ¼
-	// LH : left hand coordination (¿Ş¼Õ xyz ÁÂÇ¥°è)
-	Matrix orthographic = DirectX::XMMatrixOrthographicOffCenterLH(
-		0.0f, SCREEN_WIDTH, 0.0f, SCREEN_HEIGHT,
-		-1.0f, 1.0f
-	);
-
-	projectionBuffer->Set(orthographic);
 }
 
 TutorialScene::~TutorialScene()
@@ -54,8 +44,6 @@ TutorialScene::~TutorialScene()
 	delete indexBuffer;
 
 	delete worldBuffer;
-	delete viewBuffer;
-	delete projectionBuffer;
 
 	indices.clear();
 }
@@ -67,8 +55,6 @@ void TutorialScene::Update()
 void TutorialScene::Render()
 {
 	worldBuffer->SetVS(0);
-	viewBuffer->SetVS(1);
-	projectionBuffer->SetVS(2);
 
 	vertexBuffer->Set();
 	indexBuffer->Set();
