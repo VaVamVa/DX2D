@@ -156,6 +156,7 @@
     <ClInclude Include="Manager\GameManager.h" />
     <ClInclude Include="Objects\Basic\Rect.h" />
     <ClInclude Include="Objects\Plane\Bullet.h" />
+    <ClInclude Include="Objects\Plane\BulletManager.h" />
     <ClInclude Include="Objects\Plane\Plane.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scenes\PlaneScene.h" />
@@ -182,6 +183,8 @@
     <ClCompile Include="Framework\Utility\VirtualKeyboard.cpp" />
     <ClCompile Include="Manager\GameManager.cpp" />
     <ClCompile Include="Objects\Basic\Rect.cpp" />
+    <ClCompile Include="Objects\Plane\Bullet.cpp" />
+    <ClCompile Include="Objects\Plane\BulletManager.cpp" />
     <ClCompile Include="Objects\Plane\Plane.cpp" />
     <ClCompile Include="Scenes\PlaneScene.cpp" />
     <ClCompile Include="Scenes\SRTScene.cpp" />

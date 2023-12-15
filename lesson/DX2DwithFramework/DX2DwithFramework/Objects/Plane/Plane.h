@@ -12,6 +12,7 @@ public:
 private:
 	void Rotation();
 	void Translation();
+	void Fire();
 
 private:
 	MatrixBuffer* worldBuffer;

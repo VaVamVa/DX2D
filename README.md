@@ -70,4 +70,6 @@ Objects for init vertices to vertex buffer&shader (with pixel buffer&shader)
     - 추후 world buffer도 빼서 객체의 움직임 (SRT) 구현함.
 
 #### 과제
-- [Plane](https://github.com/VaVamVa/DX2D)
+- [Plane](https://github.com/VaVamVa/DX2D/lesson/DX2DwithFramework/DX2DwithFramework/Scenes/PlaneScene.h)
+    - [content_diff](./)
+- [Plane_codu](https://github.com/VaVamVa/DX2D/lesson/DX2DwithFramework/DX2D_SRTmatrix.md)

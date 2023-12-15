@@ -1,5 +1,6 @@
 #include "Framework.h"
 #include "Plane.h"
+#include "BulletManager.h"
 
 
 Plane::Plane()
@@ -22,6 +23,7 @@ void Plane::Update()
 {
 	Rotation();
 	Translation();
+	Fire();
 
 	Matrix R, T;
 	//S = DirectX::XMMatrixScaling(1, 1, 1);
@@ -68,5 +70,13 @@ void Plane::Translation()
 		if (pos.x + size.x * 0.5f < SCREEN_WIDTH)
 			pos.x += 100 * DELTA;
 		//matWorld._41 += 100 * DELTA;
+	}
+}
+
+void Plane::Fire()
+{
+	if (V_KEY->Down(VK_LBUTTON))
+	{
+		BulletManager::Get()->Fire(pos, angle - DirectX::XM_PIDIV2);
 	}
 }

@@ -38,7 +38,6 @@ SRTScene::~SRTScene()
 
 void SRTScene::Update()
 {
-	
 	if (V_KEY->Press(VK_LEFT))
 	{
 		scale.x -= DELTA;
