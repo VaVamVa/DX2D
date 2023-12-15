@@ -3,7 +3,7 @@
 
 SRTScene::SRTScene()
 {
-	rect = new Rect({ 200, 200 });
+	rect = new Quad({ 200, 200 });
 	worldBuffer = new MatrixBuffer();
 
 	matWorld._11 = 1;

@@ -20,6 +20,6 @@ private:
 
 	MatrixBuffer* worldBuffer;
 
-	std::vector<Vertex> vertices;
+	std::vector<VertexColor> vertices;
 	std::vector <UINT> indices;
 };

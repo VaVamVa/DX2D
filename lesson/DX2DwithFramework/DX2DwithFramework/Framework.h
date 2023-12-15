@@ -11,6 +11,7 @@
 #include <tchar.h>
 
 // Cpp Library : namespace std
+#include <cmath>
 #include <string>
 #include <vector>
 #include <map>
@@ -26,15 +27,23 @@
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d3dcompiler.lib")
 
+//DirectX Tex
+#include "Libraries/DirectXTex/DirectXTex.h"
+#pragma comment(lib, "Libraries/lib/DirectXTex.lib")
+
 typedef DirectX::XMFLOAT2 Float2;
 typedef DirectX::XMFLOAT3 Float3;
 typedef DirectX::XMFLOAT4 Float4;
 typedef DirectX::XMMATRIX Matrix;
 
 // Framework Header
+#include "Framework/Math/Vector2D.h"
+#include "Framework/Math/Transform.h"
+
 #include "Framework/Utility/Singleton.h"
 
 #include "Framework/Render/Device.h"
+#include "Framework/Render/Texture.h"
 
 #include "Framework/Shader/VertexShader.h"
 #include "Framework/Shader/PixelShader.h"
@@ -56,7 +65,7 @@ typedef DirectX::XMMATRIX Matrix;
 #include "Framework/Utility/macro.h"
 
 // Object Header
-#include "Objects/Basic/Rect.h"
+#include "Objects/Basic/Quad.h"
 
 // Scene Header
 #include "Scenes/Scene.h"
@@ -65,4 +74,4 @@ typedef DirectX::XMMATRIX Matrix;
 
 
 extern HWND hWnd;
-extern Float2 mousePos;
+extern Vector2D mousePos;

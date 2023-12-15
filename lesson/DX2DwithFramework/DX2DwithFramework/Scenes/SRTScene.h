@@ -12,7 +12,7 @@ public:
 	virtual void PostRender() override;
 
 private:
-	Rect* rect;
+	Quad* rect;
 
 	MatrixBuffer* worldBuffer;
 

@@ -1,6 +1,6 @@
 #pragma once
 
-class Plane : public Rect
+class Plane : public Quad
 {
 public:
 	Plane();

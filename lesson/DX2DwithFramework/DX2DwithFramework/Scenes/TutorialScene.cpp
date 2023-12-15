@@ -28,7 +28,7 @@ TutorialScene::TutorialScene()
 		indices.push_back(i + 2);
 	}
 
-	vertexBuffer = new VertexBuffer(vertices.data(), sizeof(Vertex), vertices.size());
+	vertexBuffer = new VertexBuffer(vertices.data(), sizeof(VertexColor), vertices.size());
 
 	indexBuffer = new IndexBuffer(indices.data(), indices.size());
 

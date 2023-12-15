@@ -8,7 +8,7 @@ HWND hWnd;
 WCHAR szTitle[MAX_LOADSTRING];
 WCHAR szWindowClass[MAX_LOADSTRING];
 
-Float2 mousePos;
+Vector2D mousePos;
 
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
@@ -118,7 +118,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
     case WM_MOUSEMOVE:
         mousePos.x = static_cast<float>(LOWORD(lParam));
-        mousePos.y = static_cast<float>(HIWORD(lParam));
+        mousePos.y = static_cast<float>(SCREEN_HEIGHT - HIWORD(lParam));
         break;
 
     case WM_COMMAND:

@@ -17,7 +17,7 @@ Bullet::Bullet()
 
 	indices = { 0, 1, 2, 1, 3, 2, 1, 4, 3, 2, 3, 5 };
 
-	vertexBuffer = new VertexBuffer(vertices.data(), sizeof(Vertex), vertices.size());
+	vertexBuffer = new VertexBuffer(vertices.data(), sizeof(VertexColor), vertices.size());
 
 	indexBuffer = new IndexBuffer(indices.data(), indices.size());
 

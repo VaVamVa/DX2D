@@ -71,5 +71,36 @@ Objects for init vertices to vertex buffer&shader (with pixel buffer&shader)
 
 #### 과제
 - [Plane](https://github.com/VaVamVa/DX2D/lesson/DX2DwithFramework/DX2DwithFramework/Scenes/PlaneScene.h)
-    - [content_diff](./)
+    - [content_diff](https://github.com/VaVamVa/DX2D/commit/f27113ed0ee3f6be64364c921f56baa970dc3b4e)
 - [Plane_codu](https://github.com/VaVamVa/DX2D/lesson/DX2DwithFramework/DX2D_SRTmatrix.md)
+
+<br>
+
+### 5. 231215
+(Rect->Quad 이름변경)
+1. Quad 객체 상위에 Transform 객체를 둚으로서, SRT 행위들을 상위 객체에서 상속,<br> 해당 world 행렬을 이 객체에서 다룸.
+2. DirectX Tex 외부 리소스 다운로드
+```
+DirectX tex 정적 library 설치 및 적용
+google-DirectX tex 검색- Microsoft github.
+Release 프로젝트 중 제일 최신 버전에서 Assets-Source code(zip) 설치.
+
+DirectXTex_Desktop_2022_Win10 solution pjt 열고 빌드하기.
+
+\DirectXTex-oct2023\DirectXTex-oct2023\DirectXTex
+에서 DirectXTex.h, DirectXTex.ini 파일 복사하여
+내 프로젝트 Libraries 하위에 DirectXTex 폴더 생성 후 붙여넣기.
+
+\DirectXTex-oct2023\DirectXTex-oct2023\DirectXTex\Bin\Desktop_2022_Win10\x64\Debug
+에서 lib 파일을 복사하여 내 프로젝트 Libraries/Lib/ 폴더 하위에 붙여넣기
+```
+3. 외부 resource를 폴리곤으로 잘라 붙이기 위한 새로운 vertex & pixel hlsl 파일 생성
+    - float4 color -> float2 uv
+    - layout 변경 해줘야함
+    - pixel shader가 따로 파일로 만들었기 때문에 이 파일의 진입점 재설정.
+4. resource 이용을 위한 Texture 객체 생성 (`srv`, 그대로는 참조 불가능한 `image`)
+5. Environment 객체에서 sampler와 blend 인터페이스 이용 추가.
+
+- [content_diff](/)
+
+#### 과제

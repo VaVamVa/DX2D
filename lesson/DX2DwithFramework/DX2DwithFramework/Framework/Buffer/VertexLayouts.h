@@ -1,13 +1,25 @@
 #pragma once
 
-struct Vertex
+struct VertexColor
 {
     Float3 pos = {};
     Float4 color = {};
 
-    Vertex(float x, float y)
+    VertexColor(float x, float y)
         :pos(x, y, 0.0f) {}
 
-    Vertex(float x, float y, float r, float g, float b)
+    VertexColor(float x, float y, float r, float g, float b)
         :pos(x, y, 0.0f), color(r, g, b, 1) {}
+};
+
+struct VertexUV
+{
+    Float3 pos = {};
+    Float2 uv = {};
+
+    VertexUV(float x, float y)
+        :pos(x, y, 0.0f) {}
+
+    VertexUV(float x, float y, float u, float v)
+        :pos(x, y, 0.0f), uv(u, v) {}
 };

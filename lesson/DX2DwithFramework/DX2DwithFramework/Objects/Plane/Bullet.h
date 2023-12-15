@@ -28,7 +28,7 @@ private:
 	VertexBuffer* vertexBuffer;
 	IndexBuffer* indexBuffer;
 
-	std::vector<Vertex> vertices;
+	std::vector<VertexColor> vertices;
 	std::vector <UINT> indices;
 
 	MatrixBuffer* worldBuffer;

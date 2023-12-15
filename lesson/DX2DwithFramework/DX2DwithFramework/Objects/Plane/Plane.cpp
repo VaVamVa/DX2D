@@ -4,7 +4,7 @@
 
 
 Plane::Plane()
-	:Rect({ 200.0f, 200.0f })
+	:Quad({ 200.0f, 200.0f })
 {
 	worldBuffer = new MatrixBuffer();
 
@@ -36,7 +36,7 @@ void Plane::Render()
 {
 	worldBuffer->Set(world);
 	worldBuffer->SetVS(0);
-	Rect::Render();
+	Quad::Render();
 }
 
 void Plane::Rotation()
