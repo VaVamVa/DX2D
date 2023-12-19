@@ -1,5 +1,6 @@
 #include "Framework.h"
 
+#include "Enemy.h"
 #include "Bullet.h"
 #include "BulletManager.h"
 
@@ -7,36 +8,51 @@ BulletManager::BulletManager()
 {
 	bullets.resize(POOL_SIZE);
 	FOR_OBJ_P(bullets)
-		iter = new Bullet();
+		ptrIter = new Bullet();
 }
 
 BulletManager::~BulletManager()
 {
 	FOR_OBJ_P(bullets)
-		delete iter;
+		delete ptrIter;
 	bullets.clear();
 }
 
 void BulletManager::Update()
 {
 	FOR_OBJ_P(bullets)
-		iter->Update();
+		ptrIter->Update();
 }
 
 void BulletManager::Render()
 {
 	FOR_OBJ_P(bullets)
-		iter->Render();
+		ptrIter->Render();
 }
 
 void BulletManager::Fire(Vector2D pos, Vector2D direction)
 {
 	FOR_OBJ_P(bullets)
 	{
-		if (!iter->IsActive())
+		if (!ptrIter->IsActive())
 		{
-			iter->Fire(pos, direction);
+			ptrIter->Fire(pos, direction);
 			return;
 		}
 	}
+}
+
+bool BulletManager::Collide(Enemy* target)
+{
+	FOR_OBJ_P(bullets)
+	{
+		if (ptrIter->IsActive() && ptrIter->CircleCollision(target))
+		{
+			ptrIter->SetActive(false);
+			target->Damage(ptrIter->GetPower());
+			return true;
+		}
+	}
+
+	return false;
 }

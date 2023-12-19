@@ -11,6 +11,8 @@ public:
 
 	void Create();
 
+	bool CircleCollision(Quad* target);
+
 protected:
 	VertexShader* vertexShader;
 	PixelShader* pixelShader;

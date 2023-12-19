@@ -15,8 +15,6 @@ Quad::Quad(std::wstring textureFile)
 
 Quad::~Quad()
 {
-	delete vertexShader;
-	delete pixelShader;
 	delete vertexBuffer;
 	delete indexBuffer;
 	delete worldBuffer;
@@ -26,11 +24,11 @@ Quad::~Quad()
 
 void Quad::Render()
 {
-	if (texture)
-		texture->PSSet();
-
 	if (!active)
 		return;
+
+	if (texture)
+		texture->PSSet();
 
 	worldBuffer->Set(world);
 	worldBuffer->SetVS(0);
@@ -46,8 +44,16 @@ void Quad::Render()
 
 void Quad::Create()
 {
-	vertexShader = new VertexShader(L"Shaders/VertexUV.hlsl");
-	pixelShader = new PixelShader(L"Shaders/PixelUV.hlsl");
+	D3D11_INPUT_ELEMENT_DESC layoutDesc[] =
+	{
+		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0,
+		D3D11_INPUT_PER_VERTEX_DATA, 0},
+		{"UV", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12,
+		D3D11_INPUT_PER_VERTEX_DATA, 0}
+	};
+
+	vertexShader = VertexShader::Add(L"Shaders/VertexUV.hlsl", layoutDesc, ARRAYSIZE(layoutDesc));
+	pixelShader = PixelShader::Add(L"Shaders/PixelUV.hlsl");
 
 	float halfWidth = size.x * 0.5f;
 	float halfHeight = size.y * 0.5f;
@@ -64,4 +70,11 @@ void Quad::Create()
 	indexBuffer = new IndexBuffer(indices.data(), indices.size());
 
 	worldBuffer = new MatrixBuffer();
+}
+
+bool Quad::CircleCollision(Quad* target)
+{
+	if ((target->localPosition - localPosition).Length() < target->size.x - size.x)
+		return true;
+	return false;
 }

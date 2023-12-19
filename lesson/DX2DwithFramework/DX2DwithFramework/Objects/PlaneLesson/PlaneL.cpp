@@ -3,7 +3,7 @@
 
 #include "BulletManager.h"
 
-PlaneL::PlaneL()
+Plane::Plane()
 	:Quad(L"Textures/BeatShooter/player.png")
 {
 	DirectX::ScratchImage image;
@@ -13,12 +13,11 @@ PlaneL::PlaneL()
 	active = true;
 }
 
-PlaneL::~PlaneL()
+Plane::~Plane()
 {
-	BulletManager::Delete();
 }
 
-void PlaneL::Update()
+void Plane::Update()
 {
 	Move();
 	Rotate();
@@ -28,12 +27,12 @@ void PlaneL::Update()
 	UpdateWorld();
 }
 
-void PlaneL::Render()
+void Plane::Render()
 {
 	Quad::Render();
 }
 
-void PlaneL::Move()
+void Plane::Move()
 {
 	if (V_KEY->Press('S'))
 	{
@@ -53,14 +52,14 @@ void PlaneL::Move()
 	}
 }
 
-void PlaneL::Rotate()
+void Plane::Rotate()
 {
 	direction = mousePos - localPosition;
 
 	localRotation.z = atan2(direction.y, direction.x);
 }
 
-void PlaneL::Fire()
+void Plane::Fire()
 {
 	if (V_KEY->Down(VK_LBUTTON))
 		BulletManager::Get()->Fire(localPosition, direction);

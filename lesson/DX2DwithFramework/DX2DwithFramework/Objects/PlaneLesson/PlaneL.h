@@ -1,10 +1,10 @@
 #pragma once
 
-class PlaneL : public Quad
+class Plane : public Quad
 {
 public:
-	PlaneL();
-	~PlaneL();
+	Plane();
+	~Plane();
 
 	void Update();
 	void Render();
@@ -16,6 +16,6 @@ private:
 	void Fire();
 
 private:
-	float speed = 100.0f;
+	float speed = 200.0f;
 	Vector2D direction;
 };

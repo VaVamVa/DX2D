@@ -53,6 +53,7 @@ void Environment::CreateSamplerState()
 	// 확대 축소 처리 (LINEAR -> 색상 선형보간으로 엘리싱 완화)
 	samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
 
+	// uv값은 한 texture의 비율이고, 1일때 해당 texture의 사각형과 같다.
 	// uv 값이 1을 넘어가면 여러 이미지가 출력되므로,
 	// uv 값이 1을 넘어갈 때 어떻게 처리할 것인가.
 	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;

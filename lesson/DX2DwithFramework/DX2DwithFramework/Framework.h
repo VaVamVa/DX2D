@@ -18,6 +18,9 @@
 #include <unordered_map>
 #include <functional>
 #include <random>
+#include <fstream>
+#include <sstream>
+
 
 // DirectX11 Library
 #include <d3d11.h>

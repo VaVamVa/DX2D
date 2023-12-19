@@ -7,6 +7,8 @@ public:
 
 	void UpdateWorld();
 
+	const Vector2D GetPos() { return localPosition; };
+
 	bool IsActive() { return active; }
 	void SetActive(bool status) { active = status; }
 

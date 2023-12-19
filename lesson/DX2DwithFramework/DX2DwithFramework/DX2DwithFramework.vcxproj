@@ -160,7 +160,10 @@
     <ClInclude Include="Objects\Basic\Quad.h" />
     <ClInclude Include="Objects\PlaneLesson\Bullet.h" />
     <ClInclude Include="Objects\PlaneLesson\BulletManager.h" />
+    <ClInclude Include="Objects\PlaneLesson\Enemy.h" />
+    <ClInclude Include="Objects\PlaneLesson\EnemyManager.h" />
     <ClInclude Include="Objects\PlaneLesson\PlaneL.h" />
+    <ClInclude Include="Objects\PlaneLesson\TriEnemy.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scenes\PlaneSceneLesson.h" />
     <ClInclude Include="Scenes\Scene.h" />
@@ -188,7 +191,10 @@
     <ClCompile Include="Objects\Basic\Quad.cpp" />
     <ClCompile Include="Objects\PlaneLesson\Bullet.cpp" />
     <ClCompile Include="Objects\PlaneLesson\BulletManager.cpp" />
+    <ClCompile Include="Objects\PlaneLesson\Enemy.cpp" />
+    <ClCompile Include="Objects\PlaneLesson\EnemyManager.cpp" />
     <ClCompile Include="Objects\PlaneLesson\PlaneL.cpp" />
+    <ClCompile Include="Objects\PlaneLesson\TriEnemy.cpp" />
     <ClCompile Include="Scenes\PlaneSceneLesson.cpp" />
   </ItemGroup>
   <ItemGroup>

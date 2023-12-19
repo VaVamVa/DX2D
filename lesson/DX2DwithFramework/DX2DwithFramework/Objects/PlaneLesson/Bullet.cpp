@@ -34,3 +34,5 @@ void Bullet::Fire(Vector2D pos, Vector2D direction)
 	localPosition = pos;
 	this->direction = direction.GetNormalized();
 }
+
+

@@ -2,6 +2,7 @@
 
 #include "Objects/PlaneLesson/PlaneL.h"
 #include "Objects/PlaneLesson/BulletManager.h"
+#include "Objects/PlaneLesson/EnemyManager.h"
 
 class PlaneSceneLesson : public Scene
 {
@@ -15,6 +16,6 @@ public:
 	virtual void PostRender() override;
 
 private:
-	PlaneL* plane;
+	Plane* plane;
 
 };
