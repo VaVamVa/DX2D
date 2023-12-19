@@ -1,6 +1,7 @@
 #include "Framework.h"
 #include "Enemy.h"
 #include "BulletManager.h"
+#include "Scenes/PlaneSceneLesson.h"
 
 Enemy::Enemy(std::wstring name)
 	:Quad(L"Textures/BeatShooter/" + name + L".png")
@@ -11,7 +12,8 @@ void Enemy::Update()
 {
 	if (!active) return;
 
-	BulletManager::Get()->Collide(this);
+	if (BulletManager::Get()->Collide(this))
+		PlaneSceneLesson::GetScore();
 
 	Rotate();
 	Move();
@@ -43,12 +45,13 @@ void Enemy::Spawn(std::vector<float>& status)
 		break;
 	}
 
-	active = true;
 	curHp = status[0];
 	power = status[1];
 	moveSpeed = status[2];
 	spawnInterval = status[3];
+	active = true;
 
+	UpdateWorld();
 }
 
 void Enemy::Damage(int power)
@@ -60,7 +63,7 @@ void Enemy::Damage(int power)
 
 void Enemy::Rotate()
 {
-	localRotation.z += DELTA;
+	localRotation.z += DELTA * moveSpeed / ROLLING_SPEED_FACTOR;
 }
 
 void Enemy::Move()

@@ -17,6 +17,7 @@ Shader 스크립트 만들기 (Vertex Shader, Pixel Shader) with Rendering Pipel
     - D2DX.cpp
     - Shader Script의 컴파일을 위한 HLSL 컴파일 진입점과 Shader Model version을 정해줘야 함.
         - 수업 pjt의 경우, VS가 첫 함수이므로 VS를 진입점으로 잡고, Shader Model은 DX11에서 version 5.0으로 지정.
+- [포프의_쉐이더_입문강좌_1](https://blog.popekim.com/ko/2011/11/29/intro-to-shader-01-what-is-shader-part-1.html)
 #### 과제
 - [n각형 그리기](lesson/D2DX/DX2D_Polygon.md)
     - [content_diff](https://github.com/VaVamVa/DX2D/commit/d24c9f0f0a10abf64334369e41181b60a2b805aa)
@@ -80,8 +81,9 @@ Objects for init vertices to vertex buffer&shader (with pixel buffer&shader)
 (Rect->Quad 이름변경)
 1. Quad 객체 상위에 Transform 객체를 둚으로서, SRT 행위들을 상위 객체에서 상속,<br> 해당 world 행렬을 이 객체에서 다룸.
 2. DirectX Tex 외부 리소스 다운로드
-```
-DirectX tex 정적 library 설치 및 적용
+
+```cpp
+--DirectX tex 정적 library 설치 및 적용--
 google-DirectX tex 검색- Microsoft github.
 Release 프로젝트 중 제일 최신 버전에서 Assets-Source code(zip) 설치.
 
@@ -93,7 +95,12 @@ DirectXTex_Desktop_2022_Win10 solution pjt 열고 빌드하기.
 
 \DirectXTex-oct2023\DirectXTex-oct2023\DirectXTex\Bin\Desktop_2022_Win10\x64\Debug
 에서 lib 파일을 복사하여 내 프로젝트 Libraries/Lib/ 폴더 하위에 붙여넣기
+
+#include "Libraries/DirectXTex/DirectXTex.h"
+#pragma comment(lib, "Libraries/lib/DirectXTex.lib")
+추가하기
 ```
+
 3. 외부 resource를 폴리곤으로 잘라 붙이기 위한 새로운 vertex & pixel hlsl 파일 생성
     - float4 color -> float2 uv
     - layout 변경 해줘야함

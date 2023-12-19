@@ -46,6 +46,7 @@ bool EnemyManager::LoadTable(std::wstring name, int level)
 		if (file.eof())
 			break;
 
+
 		if (std::stoi(buffer) == level)
 		{
 			// hp, power, speed, interval 
@@ -54,6 +55,9 @@ bool EnemyManager::LoadTable(std::wstring name, int level)
 			status[name][4] = 0.0f;
 			return true;
 		}
+		else
+			for (int i = 1; i < columSize; i++)
+				file >> buffer;
 	}
 
 	file.close();
@@ -104,7 +108,12 @@ void EnemyManager::ChangeStage(int difficulty)
 	case 1:
 		LoadTable(L"triEnemy", 0);
 		break;
-
+	case 2:
+		LoadTable(L"triEnemy", 1);
+		break;
+	case 3:
+		LoadTable(L"triEnemy", 2);
+		break;
 	}
 }
 

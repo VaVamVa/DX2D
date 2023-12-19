@@ -2,6 +2,9 @@
 
 class Enemy : public Quad
 {
+private:
+	const float ROLLING_SPEED_FACTOR = 50.0f;
+
 public:
 	Enemy(std::wstring name);
 	~Enemy() = default;

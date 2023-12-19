@@ -15,7 +15,9 @@ public:
 	virtual void Render() override;
 	virtual void PostRender() override;
 
+	static void GetScore(int increasing = 1);
+
 private:
 	Plane* plane;
-
+	static int score;
 };
