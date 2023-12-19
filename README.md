@@ -101,6 +101,11 @@ DirectXTex_Desktop_2022_Win10 solution pjt 열고 빌드하기.
 4. resource 이용을 위한 Texture 객체 생성 (`srv`, 그대로는 참조 불가능한 `image`)
 5. Environment 객체에서 sampler와 blend 인터페이스 이용 추가.
 
-- [content_diff](/)
+- [content_diff](https://github.com/VaVamVa/DX2D/commit/88020006a3a965ff8e90c44dedd138075e37d5ab)
 
 #### 과제
+- [Plane](https://github.com/VaVamVa/DX2D/tree/main/lesson/DX2DwithFramework/DX2DwithFramework)
+    - [content diff](https://github.com/VaVamVa/DX2D/commit/f79c48b92800e9edd16971c85ab86e2e54715c6f)
+1. Vertex Shader와 Pixel Shader를 각각 한 종류(?_Shader 방식? hlsl 파일?) 당 1개 씩 생성해 주었음
+2. api 때 했던 로직과 유사하게 객체들의 구조를 짰음.
+- 빠르게 구현하기 위해 tsv 파일을 썼으나, String parser를 이용하여 csv 파일을 쓸 수 있게 수정 필요.
