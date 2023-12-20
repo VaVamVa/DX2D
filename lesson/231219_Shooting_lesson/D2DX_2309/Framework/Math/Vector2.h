@@ -28,6 +28,10 @@ struct Vector2 : public Float2
     {
         return Vector2(x / s, y / s);
     }
+    Vector2 operator/(const Vector2& v) const
+    {
+        return Vector2(x / v.x, y / v.y);
+    }
 
     void operator+=(const Vector2& v)
     {

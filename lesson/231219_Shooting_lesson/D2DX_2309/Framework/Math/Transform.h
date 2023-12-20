@@ -10,6 +10,17 @@ public:
     bool IsActive() { return isActive; }
     void SetActive(bool isActive) { this->isActive = isActive; }
 
+    void Translate(const Vector2& velocity)
+    {
+        localPosition += velocity;
+    }
+    void Rotate(const float& angle)
+    {
+        localRotation.z += angle;
+    }
+
+    void SetParent(Transform* transform) { parent = transform; }
+
     Vector2 GetPos() { return localPosition;}
     float GetAngle() { return localRotation.z; }
     Vector2 GetScale() { return localScale; }
@@ -20,6 +31,9 @@ public:
     void SetAngle(float angle) { localRotation.z = angle; }
     void SetScale(Vector2 scale) { localScale = scale; }
     void SetScale(float x, float y) { localScale = { x, y }; }
+
+    Vector2 GetGloabalPos() { return globalPosition; }
+    Vector2 GetGlobalScale() { return globalScale; }
 
 protected:
     string tag;
@@ -34,4 +48,9 @@ protected:
 
 private:
     Matrix S, R, T;
+
+    Transform* parent = nullptr;
+
+    Vector2 globalPosition;
+    Vector2 globalScale;
 };

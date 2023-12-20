@@ -1,9 +1,13 @@
 #include "Framework.h"
 #include "PlaneScene.h"
 
+#include "Objects/ShootingGame/Plane.h"
+#include "Objects/ShootingGame/EnemyManager.h"
+
 PlaneScene::PlaneScene()
 {
-    OBJ->Add(new Plane());
+    plane = (Plane*)OBJ->Add(new Plane());
+    EnemyManager::Get()->CreateEnemies(plane);
 
     CreateBG();
 }
@@ -14,6 +18,7 @@ PlaneScene::~PlaneScene()
 
 void PlaneScene::Update()
 {
+    EnemyManager::Get()->Update();
 }
 
 void PlaneScene::Render()
@@ -26,22 +31,27 @@ void PlaneScene::PostRender()
 
 void PlaneScene::CreateBG()
 {
-    float scale = 0.3f;
+    float scale = 0.4f;
 
-    GameObject* bg = OBJ->Add(new Quad(path + L"bg.png", 4));
+    GameObject* bg = OBJ->Add(new Quad(PATH + L"bg.png", 4));
     bg->SetPos(CENTER_X, CENTER_Y);
     bg->SetScale(scale, scale);
     bg->UpdateWorld();
-    bg = OBJ->Add(new Quad(path + L"bg2.png", 3));
+    bg = OBJ->Add(new Quad(PATH + L"bg2.png", 3));
     bg->SetPos(CENTER_X, CENTER_Y);
     bg->SetScale(scale, scale);
     bg->UpdateWorld();
-    bg = OBJ->Add(new Quad(path + L"bg3.png", 2));
+    bg = OBJ->Add(new Quad(PATH + L"bg3.png", 2));
     bg->SetPos(CENTER_X, CENTER_Y);
     bg->SetScale(scale, scale);
     bg->UpdateWorld();
-    bg = OBJ->Add(new Quad(path + L"bgBack.png", 1));    
+    bg = OBJ->Add(new Quad(PATH + L"bgBack.png", 1));
     bg->SetPos(CENTER_X, CENTER_Y);
     bg->SetScale(scale, scale);
+    bg->UpdateWorld();
+    Quad* space = new Quad(PATH + L"space.png", 0);
+    bg = OBJ->Add(space);
+    bg->SetPos(CENTER_X, CENTER_Y);
+    bg->SetScale(Vector2(SCREEN_WIDTH, SCREEN_HEIGHT) / space->GetSize());
     bg->UpdateWorld();
 }

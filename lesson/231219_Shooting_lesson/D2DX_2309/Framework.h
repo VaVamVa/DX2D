@@ -6,8 +6,8 @@
 #define WIN_START_X 50
 #define WIN_START_Y 50
 
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 720
+#define SCREEN_WIDTH 850
+#define SCREEN_HEIGHT 850
 
 #define CENTER_X (SCREEN_WIDTH * 0.5f)
 #define CENTER_Y (SCREEN_HEIGHT * 0.5f)
@@ -17,6 +17,9 @@
 
 #define KEY Keyboard::Get()
 #define DELTA Timer::Get()->GetElapsedTime()
+
+#define RANDOM Random::Get()
+
 #define OBJ ObjectManager::Get()
 
 #define FOR(n) for(int i = 0 ; i < n ; i++)
@@ -29,6 +32,7 @@
 #include <list>
 #include <functional>
 #include <algorithm>
+#include <random>
 
 #include <d3d11.h>
 #include <DirectXMath.h>
@@ -36,6 +40,7 @@
 
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d3dcompiler.lib")
+#pragma comment(lib, "dxguid.lib")
 
 //DirectXTex
 #include "Libraries/DirectXTex/DirectXTex.h"
@@ -53,10 +58,14 @@ typedef XMMATRIX Matrix;
 #include "Framework/Utility/Singleton.h"
 #include "Framework/Utility/Keyboard.h"
 #include "Framework/Utility/Timer.h"
+#include "Framework/Utility/Random.h"
 
 #include "Framework/Math/Vector2.h"
 #include "Framework/Math/GameMath.h"
+using namespace GameMath;
+
 #include "Framework/Math/Transform.h"
+
 
 #include "Framework/Render/Device.h"
 #include "Framework/Render/Texture.h"
@@ -70,6 +79,9 @@ typedef XMMATRIX Matrix;
 #include "Framework/Buffer/ConstBuffer.h"
 #include "Framework/Buffer/VertexLayouts.h"
 #include "Framework/Buffer/GlobalBuffer.h"
+
+#include "Framework/Collider/Collider.h"
+#include "Framework/Collider/CircleCollider.h"
 
 #include "Framework/Environment/Environment.h"
 

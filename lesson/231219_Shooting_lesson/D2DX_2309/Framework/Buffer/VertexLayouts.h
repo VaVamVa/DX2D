@@ -1,17 +1,11 @@
 #pragma once
 //VertexLayouts
 
-struct VertexColor//정점 : 3차원 공간에서의 한 점
+struct VertexPos//정점 : 3차원 공간에서의 한 점
 {
     XMFLOAT3 pos = {};
-    XMFLOAT4 color = {};
 
-    VertexColor(float x, float y) : pos(x, y, 0)
-    {
-    }
-
-    VertexColor(float x, float y, float r, float g, float b)
-        : pos(x, y, 0), color(r, g, b, 1)
+    VertexPos(float x, float y) : pos(x, y, 0)
     {
     }
 };

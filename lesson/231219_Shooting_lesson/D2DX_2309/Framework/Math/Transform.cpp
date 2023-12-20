@@ -12,4 +12,13 @@ void Transform::UpdateWorld()
     T = XMMatrixTranslation(localPosition.x, localPosition.y, 0);
 
     world = S * R * T;
+
+    if (parent)
+        world *= parent->world;
+
+    XMVECTOR outS, outR, outT;
+    XMMatrixDecompose(&outS, &outR, &outT, world);
+
+    XMStoreFloat2(&globalPosition, outT);
+    XMStoreFloat2(&globalScale, outS);
 }

@@ -1,7 +1,7 @@
 #include "Framework.h"
 #include "Bullet.h"
 
-Bullet::Bullet() : Quad(L"Textures/BeatShooter/playerBullet.png")
+Bullet::Bullet() : Quad(L"Textures/BeatShooter/playerBullet2.png", 9)
 {
     isActive = false;
 }

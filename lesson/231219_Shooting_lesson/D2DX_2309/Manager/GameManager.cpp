@@ -9,6 +9,7 @@ GameManager::GameManager()
     Environment::Get();
     Keyboard::Get();
     Timer::Get();
+    Random::Get();
 
     //scene = new TutorialScene();
     //scene = new SRTScene();
@@ -32,6 +33,8 @@ void GameManager::Update()
     Timer::Get()->Update();
 
     scene->Update();
+    Collider::TotalUpdate();
+
     ObjectManager::Get()->Update();
 }
 
@@ -41,6 +44,7 @@ void GameManager::Render()
 
     ObjectManager::Get()->Render();
     scene->Render();
+    Collider::TotalRender();
     scene->PostRender();
 
     Device::Get()->Present();

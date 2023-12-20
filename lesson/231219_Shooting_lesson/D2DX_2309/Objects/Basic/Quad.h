@@ -10,6 +10,8 @@ public:
     virtual void Update() override {}
     virtual void Render() override;
 
+    Vector2 GetSize() { return size; }
+
 private:
     void Create();
 

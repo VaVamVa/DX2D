@@ -1,9 +1,10 @@
 #pragma once
 
-#include "Objects/ShootingGame/Plane.h"
-
 class PlaneScene : public Scene
 {
+private:
+    const wstring PATH = L"Textures/BeatShooter/";
+
 public:
     PlaneScene();
     ~PlaneScene();
@@ -16,7 +17,7 @@ private:
     void CreateBG();
 
 private:
-    wstring path = L"Textures/BeatShooter/";
-
     Transform* bgLight;
+
+    class Plane* plane;
 };
