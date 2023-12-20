@@ -112,7 +112,17 @@ DirectXTex_Desktop_2022_Win10 solution pjt 열고 빌드하기.
 
 #### 과제
 - [Plane](https://github.com/VaVamVa/DX2D/tree/main/lesson/DX2DwithFramework/DX2DwithFramework)
-    - [content diff](https://github.com/VaVamVa/DX2D/commit/f79c48b92800e9edd16971c85ab86e2e54715c6f)
+    - [content_diff](https://github.com/VaVamVa/DX2D/commit/f79c48b92800e9edd16971c85ab86e2e54715c6f)
 1. Vertex Shader와 Pixel Shader를 각각 한 종류(?_Shader 방식? hlsl 파일?) 당 1개 씩 생성해 주었음
 2. api 때 했던 로직과 유사하게 객체들의 구조를 짰음.
 - 빠르게 구현하기 위해 tsv 파일을 썼으나, String parser를 이용하여 csv 파일을 쓸 수 있게 수정 필요.
+
+<br>
+
+### 5. 231220
+1. Shader에 대한 static container를 가지는 하나의 super class를 두어 중복 생성 관리 (`4.231215`는 각 Shader 객체에서 관리했음.)
+    - [content_diff](https://github.com/VaVamVa/DX2D/commit/8fe456b561b8cef8622fd8e2573ad35178fe1b80)
+2. obj를 한 묶음으로 관리하게 함.
+    - 변경된 점이 많아 수업의 프로젝트를 그대로 가져옴.
+3. background 생성, depth에 따라 차등 Render
+    - [content_diff](https://github.com/VaVamVa/DX2D/commit/3841aefdc76516a76f54c063e80bc78a04b7af3b)
