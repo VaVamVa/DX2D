@@ -1,19 +1,16 @@
 #pragma once
 
-class PixelShader
+class PixelShader : public Shader
 {
 private:
-	PixelShader(ID3D11PixelShader* shader);
-	~PixelShader();
+    friend class Shader;
+
+    PixelShader(std::wstring file);
+    ~PixelShader();
 
 public:
-	static PixelShader* Add(std::wstring file);
-	void Set();
-
-	static void Destroy();
+    virtual void Set() override;
 
 private:
-	static std::unordered_map<std::wstring, PixelShader*> pixelShaders;
-
-	ID3D11PixelShader* shader;
+    ID3D11PixelShader* shader;
 };

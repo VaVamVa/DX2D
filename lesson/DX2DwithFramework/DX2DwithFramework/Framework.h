@@ -48,6 +48,7 @@ typedef DirectX::XMMATRIX Matrix;
 #include "Framework/Render/Device.h"
 #include "Framework/Render/Texture.h"
 
+#include "Framework/Shader/Shader.h"
 #include "Framework/Shader/VertexShader.h"
 #include "Framework/Shader/PixelShader.h"
 
@@ -68,6 +69,7 @@ typedef DirectX::XMMATRIX Matrix;
 #include "Framework/Utility/macro.h"
 
 // Object Header
+#include "Objects/Basic/GameObject.h"
 #include "Objects/Basic/Quad.h"
 
 // Scene Header

@@ -20,6 +20,7 @@ GameManager::~GameManager()
 {
 	delete scene;
 
+	Shader::Delete();
 	Environment::Delete();
 	Device::Delete();
 }

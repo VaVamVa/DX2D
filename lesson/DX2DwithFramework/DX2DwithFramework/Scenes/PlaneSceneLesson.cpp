@@ -16,8 +16,6 @@ PlaneSceneLesson::~PlaneSceneLesson()
 	delete plane;
 	BulletManager::Delete();
 	EnemyManager::Delete();
-	VertexShader::Destroy();
-	PixelShader::Destroy();
 }
 
 void PlaneSceneLesson::Update()

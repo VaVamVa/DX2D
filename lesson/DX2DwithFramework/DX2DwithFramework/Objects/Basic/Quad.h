@@ -1,10 +1,10 @@
 #pragma once
 
-class Quad : public Transform
+class Quad : public GameObject
 {
 public:
 	Quad(Vector2D size);
-	Quad(std::wstring textureFile);
+	Quad(std::wstring textureFile, int depth = 0);
 	~Quad();
 
 	void Render();
@@ -14,16 +14,11 @@ public:
 	bool CircleCollision(Quad* target);
 
 protected:
-	VertexShader* vertexShader;
-	PixelShader* pixelShader;
-
 	VertexBuffer* vertexBuffer;
 	IndexBuffer* indexBuffer;
 
 	std::vector<VertexUV> vertices;
 	std::vector <UINT> indices;
-
-	MatrixBuffer* worldBuffer;
 
 	Texture* texture = nullptr;
 

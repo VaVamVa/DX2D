@@ -1,20 +1,17 @@
 #pragma once
 
-class VertexShader
+class VertexShader : public Shader
 {
 private:
-	VertexShader(ID3D11InputLayout* inputLayout, ID3D11VertexShader* shader);
-	~VertexShader();
+    friend class Shader;
+
+    VertexShader(std::wstring file);
+    ~VertexShader();
 
 public:
-	static VertexShader* Add(std::wstring file, D3D11_INPUT_ELEMENT_DESC layoutDesc[], int layoutSize);
-	void Set();
-
-	static void Destroy();
+    virtual void Set() override;
 
 private:
-	static std::unordered_map<std::wstring, VertexShader*> vertexShaders;
-
-	ID3D11VertexShader* shader;
-	ID3D11InputLayout* inputLayout;
+    ID3D11VertexShader* shader;
+    ID3D11InputLayout* inputLayout;
 };

@@ -6,7 +6,8 @@ Quad::Quad(Vector2D size)
 	Create();
 }
 
-Quad::Quad(std::wstring textureFile)
+Quad::Quad(std::wstring textureFile, int depth)
+	:GameObject(depth)
 {
 	texture = Texture::Add(textureFile);
 	size = texture->GetSize();
@@ -17,7 +18,6 @@ Quad::~Quad()
 {
 	delete vertexBuffer;
 	delete indexBuffer;
-	delete worldBuffer;
 
 	indices.clear();
 }
@@ -44,17 +44,6 @@ void Quad::Render()
 
 void Quad::Create()
 {
-	D3D11_INPUT_ELEMENT_DESC layoutDesc[] =
-	{
-		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0,
-		D3D11_INPUT_PER_VERTEX_DATA, 0},
-		{"UV", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12,
-		D3D11_INPUT_PER_VERTEX_DATA, 0}
-	};
-
-	vertexShader = VertexShader::Add(L"Shaders/VertexUV.hlsl", layoutDesc, ARRAYSIZE(layoutDesc));
-	pixelShader = PixelShader::Add(L"Shaders/PixelUV.hlsl");
-
 	float halfWidth = size.x * 0.5f;
 	float halfHeight = size.y * 0.5f;
 
@@ -68,8 +57,6 @@ void Quad::Create()
 	vertexBuffer = new VertexBuffer(vertices.data(), sizeof(VertexUV), vertices.size());
 
 	indexBuffer = new IndexBuffer(indices.data(), indices.size());
-
-	worldBuffer = new MatrixBuffer();
 }
 
 bool Quad::CircleCollision(Quad* target)
