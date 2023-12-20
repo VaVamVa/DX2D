@@ -9,6 +9,10 @@ ObjectManager::~ObjectManager()
 {
     for (GameObject* object : objects)
         delete object;
+    for (pair<int, GameObject*> object : mapObjects)
+    {
+        pair<multimap<int, GameObject*>::iterator, multimap<int, GameObject*>::iterator> pair_iter = mapObjects.equal_range(object.first);
+    }
 }
 
 void ObjectManager::Update()
@@ -30,5 +34,11 @@ GameObject* ObjectManager::Add(GameObject* object)
     sort(objects.begin(), objects.end(), GameObject::CompareObject);
     //objects.sort()    
 
+    return object;
+}
+
+GameObject* ObjectManager::MapAdd(GameObject* object)
+{
+    mapObjects.insert({ object->GetDepth(), object });
     return object;
 }
