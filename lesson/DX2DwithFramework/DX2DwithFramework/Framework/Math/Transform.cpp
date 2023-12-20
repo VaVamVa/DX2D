@@ -14,4 +14,13 @@ void Transform::UpdateWorld()
 	T = DirectX::XMMatrixTranslation(localPosition.x, localPosition.y, 0);
 
 	world = S * R * T;
+
+	if (parent != nullptr)
+		world += parent->world;
+
+	DirectX::XMVECTOR outS, outR, outT;
+	XMMatrixDecompose(&outS, &outR, &outT, world);
+
+	DirectX::XMStoreFloat2(&globalPosition, outT);
+	DirectX::XMStoreFloat2(&globalScale, outS);
 }

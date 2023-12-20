@@ -42,17 +42,13 @@ void BulletManager::Fire(Vector2D pos, Vector2D direction)
 	}
 }
 
-bool BulletManager::Collide(Enemy* target)
+void BulletManager::Collide(Collider* collider)
 {
-	FOR_OBJ_P(bullets)
+	/*FOR_OBJ_P(bullets)
 	{
-		if (ptrIter->IsActive() && ptrIter->CircleCollision(target))
+		if (ptrIter->IsActive() && ptrIter->GetCollider())
 		{
 			ptrIter->SetActive(false);
-			target->Damage(ptrIter->GetPower());
-			return true;
 		}
-	}
-
-	return false;
+	}*/
 }

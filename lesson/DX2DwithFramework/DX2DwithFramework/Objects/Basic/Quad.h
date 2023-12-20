@@ -11,8 +11,6 @@ public:
 
 	void Create();
 
-	bool CircleCollision(Quad* target);
-
 protected:
 	VertexBuffer* vertexBuffer;
 	IndexBuffer* indexBuffer;

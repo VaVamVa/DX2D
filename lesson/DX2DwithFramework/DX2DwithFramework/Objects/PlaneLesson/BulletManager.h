@@ -16,7 +16,7 @@ public:
 
 	void Fire(Vector2D pos, Vector2D direction);
 
-	bool Collide(class Enemy* target);
+	void Collide(Collider* collider);
 
 private:
 	std::vector<class Bullet*> bullets;

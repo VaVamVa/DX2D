@@ -58,10 +58,3 @@ void Quad::Create()
 
 	indexBuffer = new IndexBuffer(indices.data(), indices.size());
 }
-
-bool Quad::CircleCollision(Quad* target)
-{
-	if ((target->localPosition - localPosition).Length() < target->size.x - size.x)
-		return true;
-	return false;
-}

@@ -13,6 +13,8 @@ public:
 
     void Update();    
 
+    CircleCollider* GetCollider() { return collider; }
+
 private:
     void Move();
     void Rotate();
@@ -23,5 +25,5 @@ private:
     Vector2 direction;
     Vector2 velocity;
 
-    Collider* collider;
+    CircleCollider* collider;
 };

@@ -20,7 +20,7 @@ Plane::~Plane()
 void Plane::Update()
 {
 	Move();
-	Rotate();
+	Aim();
 
 	Fire();
 
@@ -52,7 +52,7 @@ void Plane::Move()
 	}
 }
 
-void Plane::Rotate()
+void Plane::Aim()
 {
 	direction = mousePos - localPosition;
 

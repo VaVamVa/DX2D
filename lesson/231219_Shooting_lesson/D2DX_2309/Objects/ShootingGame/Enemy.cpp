@@ -1,6 +1,8 @@
 #include "Framework.h"
 #include "Enemy.h"
 
+#include "BulletManager.h"
+
 Enemy::Enemy(Transform* target)
 	:Quad(L"Textures/BeatShooter/rectEnemy.png", 10),
 	target(target)
@@ -22,6 +24,12 @@ void Enemy::Update()
 {
 	if (!isActive)
 		return;
+
+	if (BulletManager::Get()->Collide(collider))
+	{
+		isActive = false;
+		return;
+	}
 
 	direction = (target->GetPos() - localPosition).GetNormalized();
 	Translate(direction * moveSpeed * DELTA);

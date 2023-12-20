@@ -12,8 +12,8 @@ void Enemy::Update()
 {
 	if (!active) return;
 
-	if (BulletManager::Get()->Collide(this))
-		PlaneSceneLesson::GetScore();
+	/*if (BulletManager::Get()->Collide(this))
+		PlaneSceneLesson::GetScore();*/
 
 	Rotate();
 	Move();

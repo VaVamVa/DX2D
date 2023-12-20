@@ -11,11 +11,13 @@ public:
 
 private:
 	void Move();
-	void Rotate();
+	void Aim();
 
 	void Fire();
 
 private:
 	float speed = 200.0f;
 	Vector2D direction;
+
+	Vector2D velocity;
 };

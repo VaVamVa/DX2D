@@ -14,6 +14,7 @@ public:
 	// l-value <= return <= r-value
 	int GetRandomInt(const int& min, const int& max);
 	float GetRandomFloat(const float& min, const float& max);
+	Vector2D GetRandomVector2D(const float& min, const float& max);
 
 private:
 	std::random_device randDevice;

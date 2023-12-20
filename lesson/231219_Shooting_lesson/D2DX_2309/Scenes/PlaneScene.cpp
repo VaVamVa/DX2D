@@ -3,10 +3,12 @@
 
 #include "Objects/ShootingGame/Plane.h"
 #include "Objects/ShootingGame/EnemyManager.h"
+#include "Objects/ShootingGame/BulletManager.h"
 
 PlaneScene::PlaneScene()
 {
     plane = (Plane*)OBJ->Add(new Plane());
+    BulletManager::Get();
     EnemyManager::Get()->CreateEnemies(plane);
 
     CreateBG();
@@ -19,6 +21,7 @@ PlaneScene::~PlaneScene()
 void PlaneScene::Update()
 {
     EnemyManager::Get()->Update();
+    EnemyManager::Get()->Collision(plane->GetCollider());
 }
 
 void PlaneScene::Render()

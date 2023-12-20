@@ -7,15 +7,12 @@ Plane::Plane() : Quad(L"Textures/BeatShooter/player.png", 10)
     localPosition = { CENTER_X, CENTER_Y };
     localScale = { 0.4f, 0.4f };
 
-    BulletManager::Get();
-
     collider = new CircleCollider(GetSize().x * 0.5f);
     collider->SetParent(this);  // scale, pos ´Ù »ó¼ÓµÊ
 }
 
 Plane::~Plane()
 {
-    BulletManager::Delete();
 }
 
 void Plane::Update()

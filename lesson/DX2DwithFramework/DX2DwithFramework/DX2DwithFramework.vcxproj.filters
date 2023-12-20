@@ -117,6 +117,15 @@
     <ClInclude Include="Objects\Basic\GameObject.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\Collider\Collider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Math\GameMath.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Collider\CircleCollider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX2DwithFramework.cpp">
@@ -197,6 +206,15 @@
     <ClCompile Include="Objects\Basic\GameObject.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Math\GameMath.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Collider\Collider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Collider\CircleCollider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX2DwithFramework.rc">
@@ -215,5 +233,7 @@
     <FxCompile Include="Shaders\Tutorial.hlsl" />
     <FxCompile Include="Shaders\VertexUV.hlsl" />
     <FxCompile Include="Shaders\PixelUV.hlsl" />
+    <FxCompile Include="Shaders\VertexPos.hlsl" />
+    <FxCompile Include="Shaders\PixelPos.hlsl" />
   </ItemGroup>
 </Project>

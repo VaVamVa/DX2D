@@ -25,3 +25,8 @@ constexpr float PI = 3.141592;
 
 #define DEVICE Device::Get()->GetDevice()
 #define DC Device::Get()->GetDeviceContext()
+
+typedef DirectX::XMFLOAT2 Float2;
+typedef DirectX::XMFLOAT3 Float3;
+typedef DirectX::XMFLOAT4 Float4;
+typedef DirectX::XMMATRIX Matrix;
