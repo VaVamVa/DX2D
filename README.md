@@ -119,10 +119,45 @@ DirectXTex_Desktop_2022_Win10 solution pjt 열고 빌드하기.
 
 <br>
 
-### 5. 231220
+### 5. 231219
 1. Shader에 대한 static container를 가지는 하나의 super class를 두어 중복 생성 관리 (`4.231215`는 각 Shader 객체에서 관리했음.)
     - [content_diff](https://github.com/VaVamVa/DX2D/commit/8fe456b561b8cef8622fd8e2573ad35178fe1b80)
-2. obj를 한 묶음으로 관리하게 함.
+2. [obj를 한 묶음으로 관리하게 함](https://github.com/VaVamVa/DX2D/blob/main/lesson/231219_Shooting_lesson/D2DX_2309/Objects/Basic/ObjectManager.h)
     - 변경된 점이 많아 수업의 프로젝트를 그대로 가져옴.
-3. background 생성, depth에 따라 차등 Render
     - [content_diff](https://github.com/VaVamVa/DX2D/commit/3841aefdc76516a76f54c063e80bc78a04b7af3b)
+    - ObjectManager 에서 depth에 따라 차등 Render
+        - container로서 `multimap` 이용. depth를 key로 두어 오름차순으로 후에 Render되도록 설계.
+3. background 생성.
+
+<br>
+  
+### 6. 231220
+
+1. 원형 경기장 설정 및 원형 경기장 밖으로 못 빠져나가게 구현.
+   - sliding vector를 구하려고 했으나, 구현에 어려움이 있어 차선책으로 `push land` 이용.
+   ```cpp
+     /*
+    if (distance >= MAP_RADIUS)
+    {
+        // sliding vector
+        velocity = velocity - normalVector * Dot(velocity, normalVector);
+
+        Translate(normalVector * MAP_PUSH_SPEED * DELTA);
+    }
+    */
+    if (distance >= MAP_RADIUS)
+    {
+        Vector2 normalVector = (CENTER - localPosition).GetNormalized();
+        Translate(normalVector * MAP_PUSH_SPEED * DELTA);
+    }
+     ```
+     - [reference](https://toymaker.tistory.com/entry/%EB%AF%B8%EB%81%84%EB%9F%AC%EC%A7%90-%EB%B2%A1%ED%84%B0-Sliding-Vector)
+
+2. Collider 객체 생성, 해당 객체를 충돌이 가능한 객체에 참조.
+3. Collider 가능한 범위 표현을 위해 원형의 Line Strip를 Shade 해주기 위해 새로운 `Shader` 생성.
+   - [VertexPos](https://github.com/VaVamVa/DX2D/blob/main/lesson/231219_Shooting_lesson/D2DX_2309/Shaders/VertexPos.hlsl), [PixelPos](https://github.com/VaVamVa/DX2D/blob/main/lesson/231219_Shooting_lesson/D2DX_2309/Shaders/PixelPos.hlsl) Shader 생성.
+   - 이때 `PixelPos Shader`에 Color를 전달해 줄 ConstBuffer를 상속받는 Color Buffer 생성.
+4. `3`을 기반으로 plane, enemy, bullet 객체 collider 참조하여 collision 구현.(과제)
+   - [content_diff](https://github.com/VaVamVa/DX2D/commit/49f5dcf1a26a5019a688d09d0fbb70a3f9c3412a)
+
+- [content_diff](https://github.com/VaVamVa/DX2D/commit/845c5b034b6724783dc046b8bbbf4b4d694c7d6a)
