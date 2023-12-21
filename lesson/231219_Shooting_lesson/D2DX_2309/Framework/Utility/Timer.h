@@ -17,6 +17,7 @@ public:
     void SetDeltaScale(float value) { deltaScale = value; }
 
     float GetElapsedTime() { return elapsedTime > EPSILON ? EPSILON : elapsedTime * deltaScale; }
+    int GetFPS() { return frameRate; }
 
 private:
     float timeScale = 0.0f;

@@ -22,3 +22,14 @@ void Transform::UpdateWorld()
     XMStoreFloat2(&globalPosition, outT);
     XMStoreFloat2(&globalScale, outS);
 }
+
+bool Transform::IsActive()
+{
+    if (parent == nullptr)
+        return isActive;
+
+    if (!isActive)
+        return false;
+
+    return parent->IsActive();
+}

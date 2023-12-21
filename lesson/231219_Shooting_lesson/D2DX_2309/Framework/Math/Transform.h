@@ -7,7 +7,7 @@ public:
 
     void UpdateWorld();
 
-    bool IsActive() { return isActive; }
+    bool IsActive();
     void SetActive(bool isActive) { this->isActive = isActive; }
 
     void Translate(const Vector2& velocity)

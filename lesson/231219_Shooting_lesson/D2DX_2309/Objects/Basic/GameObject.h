@@ -12,6 +12,8 @@ public:
 	int GetDepth() { return depth; }
 	void SetDetph(int depth) { this->depth = depth; }
 
+	void SetPS(wstring file);
+
 	static int CompareObject(GameObject* obj1, GameObject* obj2)
 	{
 		return obj1->GetDepth() < obj2->GetDepth();

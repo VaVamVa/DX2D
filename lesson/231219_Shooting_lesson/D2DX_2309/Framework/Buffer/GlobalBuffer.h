@@ -31,3 +31,15 @@ public:
 private:
     Float4 color = { 1, 1, 1, 1 };
 };
+
+class ValueBuffer : public ConstBuffer
+{
+public:
+    ValueBuffer() : ConstBuffer(values, sizeof(float) * 4)
+    {}
+
+    float* GetDate() { return values; }
+
+private:
+    float values[4];
+};

@@ -22,15 +22,3 @@ void BulletManager::Fire(Vector2 pos, Vector2 direction)
     }
 }
 
-bool BulletManager::Collide(CircleCollider* collider)
-{
-    for (Bullet* bullet : bullets)
-    {
-        if (bullet->IsActive() && bullet->GetCollider()->IsCircleCollision(collider))
-        {
-            bullet->SetActive(false);
-            return true;
-        }
-    }
-    return false;
-}

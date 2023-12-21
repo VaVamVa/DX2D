@@ -1,6 +1,7 @@
 #include "Framework.h"
 #include "Bullet.h"
 
+#include "EnemyManager.h"
 
 Bullet::Bullet() : Quad(L"Textures/BeatShooter/playerBullet2.png", 9)
 {
@@ -9,7 +10,7 @@ Bullet::Bullet() : Quad(L"Textures/BeatShooter/playerBullet2.png", 9)
     localScale *= 0.4f;
     OBJ->Add(this);
 
-    collider = new CircleCollider(GetSize().x * 0.5f);
+    collider = new CircleCollider(GetSize().x * 0.3f);
     collider->SetParent(this);
 }
 
@@ -19,7 +20,7 @@ Bullet::~Bullet()
 
 void Bullet::Update()
 {
-    if (!isActive) return;
+    if (!IsActive()) return;
 
     localPosition += direction * speed * DELTA;
     localRotation.z = direction.Angle();
@@ -34,6 +35,11 @@ void Bullet::Update()
 
     if ((localPosition - CENTER).Length() > MAP_RADIUS)
         isActive = false;
+
+    if (EnemyManager::Get()->IsCollision(collider))
+    {
+        isActive = false;
+    }
 
 
     UpdateWorld();

@@ -1,6 +1,7 @@
 #include "Framework.h"
 
 vector<Collider*> Collider::colliders;
+bool Collider::isDraw = true;
 
 Collider::Collider()
 {
@@ -23,7 +24,7 @@ Collider::~Collider()
 
 void Collider::Render()
 {
-	if (!isActive) return;
+	if (!IsActive()) return;
 
 	colorBuffer->SetPS(0);
 
@@ -40,17 +41,33 @@ void Collider::Render()
 
 bool Collider::IsCollision(Collider* collider)
 {
+	if (!IsActive() || !collider->IsActive()) return false;
+
+	switch (collider->type)
+	{
+	case Collider::Type::RECT:
+		return IsRectCollision((RectCollider*)collider);
+	case Collider::Type::CIRCLE:
+		return IsCircleCollision((CircleCollider*)collider);
+	}
+
 	return false;
 }
 
 void Collider::TotalUpdate()
 {
+	if (KEY->Down(VK_F1))
+		isDraw = !isDraw;
+
 	for (Collider* collider : colliders)
 		collider->UpdateWorld();
 }
 
 void Collider::TotalRender()
 {
+	if (!isDraw)
+		return;
+
 	for (Collider* collider : colliders)
 		collider->Render();
 }

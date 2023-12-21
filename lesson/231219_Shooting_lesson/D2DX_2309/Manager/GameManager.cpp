@@ -2,7 +2,8 @@
 
 //#include "Scenes/TutorialScene.h"
 //#include "Scenes/SRTScene.h"
-#include "Scenes/PlaneScene.h"
+//#include "Scenes/PlaneScene.h"
+#include "Scenes/CollisionScene.h"
 
 GameManager::GameManager()
 {
@@ -13,7 +14,7 @@ GameManager::GameManager()
 
     //scene = new TutorialScene();
     //scene = new SRTScene();
-    scene = new PlaneScene();
+    scene = new CollisionScene();
 }
 
 GameManager::~GameManager()

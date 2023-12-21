@@ -12,8 +12,6 @@ private:
 public:
     void Fire(Vector2 pos, Vector2 direction);
 
-    bool Collide(CircleCollider* collider);
-
 private:
     vector<class Bullet*> bullets;
 };

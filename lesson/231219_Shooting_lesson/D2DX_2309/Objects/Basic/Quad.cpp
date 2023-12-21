@@ -21,7 +21,7 @@ Quad::~Quad()
 
 void Quad::Render()
 {
-    if (!isActive) return;
+    if (!IsActive()) return;
 
     if (texture)
         texture->PSSet();

@@ -13,3 +13,8 @@ GameObject::~GameObject()
 {
 	delete worldBuffer;
 }
+
+void GameObject::SetPS(wstring file)
+{
+	pixelShader = Shader::AddPS(file);
+}

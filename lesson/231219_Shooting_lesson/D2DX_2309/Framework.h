@@ -12,6 +12,8 @@
 #define CENTER_X (SCREEN_WIDTH * 0.5f)
 #define CENTER_Y (SCREEN_HEIGHT * 0.5f)
 
+//#define CENTER Vector2(CENTER_X, CENTER_Y)
+
 #define DEVICE Device::Get()->GetDevice()
 #define DC Device::Get()->GetDeviceContext()
 
@@ -82,6 +84,7 @@ using namespace GameMath;
 
 #include "Framework/Collider/Collider.h"
 #include "Framework/Collider/CircleCollider.h"
+#include "Framework/Collider/RectCollider.h"
 
 #include "Framework/Environment/Environment.h"
 

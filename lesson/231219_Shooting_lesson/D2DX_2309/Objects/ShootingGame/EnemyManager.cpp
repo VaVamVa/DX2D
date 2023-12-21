@@ -25,13 +25,17 @@ void EnemyManager::CreateEnemies(Transform* target)
 		enemy = new Enemy(target);
 }
 
-void EnemyManager::Collision(CircleCollider* collider)
+bool EnemyManager::IsCollision(CircleCollider* collider)
 {
 	for (Enemy* enemy : enemies)
 	{
 		if (enemy->GetCollider()->IsCircleCollision(collider))
+		{
 			enemy->SetActive(false);
+			return true;
+		}
 	}
+	return false;
 }
 
 void EnemyManager::Spawn()

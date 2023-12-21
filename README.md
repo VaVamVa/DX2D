@@ -161,3 +161,43 @@ DirectXTex_Desktop_2022_Win10 solution pjt 열고 빌드하기.
    - [content_diff](https://github.com/VaVamVa/DX2D/commit/49f5dcf1a26a5019a688d09d0fbb70a3f9c3412a)
 
 - [content_diff](https://github.com/VaVamVa/DX2D/commit/845c5b034b6724783dc046b8bbbf4b4d694c7d6a)
+
+<br>
+  
+### 7. 231221
+<br>
+
+1. 새로운 [PxielBGLightShader](./lesson/231219_Shooting_lesson/D2DX_2309\Shaders/PixelBGLight.hlsl) 생성.
+    - Texture와 색상을 곱하여 Shade 함.
+    - shader를 angle에 따라 rotate 해줌 (회전 행렬)
+
+2. 
+
+3. 새로운 CollisionScene 생성
+
+#### 4. `imgui` library 적용법
+
+1. 솔루션 우클릭->새 프로젝트-> "정적 라이브러리" 추가, 원래 있던 소스, 헤더파일 삭제
+2. `imgui` 최신버전 다운로드 후 아래의 파일들 솔루션에 복사 & 붙여넣기
+    - 
+3. `ImGui` 솔루션에서 미리 컴파일된 헤더 사용하지 않음 한 후 빌드
+4. 생성된 ???.lib 파일을 본인 프로젝트의 Lib에 붙여넣기
+5. 잠시 생성했던 솔루션 삭제
+6. `Framework.h` 에서
+```
+#include "Libraries/ImGui/" + (imgui.h, imgui_impl_dx11.h, imgui_impl_win32.h)
+#pragma comment(lib, "Libraries/Lib/ImGui.lib")
+```
+7. `main.cpp` 에서 ``를 `WinProc` 함수 위에 입력
+8. `GameManager` 에서 아래의 코드 입력
+```
+```
+9. `GameManager::Render()`에서 아래의 코드 입력
+```
+```
+
+- 기능 : 디버깅, 에디터 등
+
+4. 회전한 네모 객체 Point Collision 구현.
+
+- [content_diff]()

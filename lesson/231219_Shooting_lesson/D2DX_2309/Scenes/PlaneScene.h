@@ -17,7 +17,12 @@ private:
     void CreateBG();
 
 private:
+    class Plane* plane;
+
     Transform* bgLight;
 
-    class Plane* plane;
+    Quad* bg2;
+    Texture* bgLightTexture;
+
+    ValueBuffer* valueBuffer;
 };

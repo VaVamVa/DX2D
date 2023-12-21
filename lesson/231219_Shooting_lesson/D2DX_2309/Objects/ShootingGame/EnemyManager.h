@@ -16,7 +16,7 @@ public:
 
 	void CreateEnemies(Transform* target);
 
-	void Collision(CircleCollider* collider);
+	bool IsCollision(CircleCollider* collider);
 
 private:
 	void Spawn();

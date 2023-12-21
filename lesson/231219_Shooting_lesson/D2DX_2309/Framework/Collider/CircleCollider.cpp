@@ -3,6 +3,8 @@
 CircleCollider::CircleCollider(float radius)
 	:radius(radius)
 {
+	type = Type::CIRCLE;
+
 	vertices.reserve(VERTEX_COUNT + 1);
 
 	float step = XM_2PI / VERTEX_COUNT;
@@ -20,7 +22,21 @@ CircleCollider::CircleCollider(float radius)
 
 bool CircleCollider::IsCircleCollision(CircleCollider* collider)
 {
+	if (!IsActive() || !collider->IsActive()) return false;
+
 	float distance = Distance(collider->GetGloabalPos(), GetGloabalPos());
 
 	return distance < Radius() + collider->Radius();
+}
+
+bool CircleCollider::IsPointCollision(const Vector2 point)
+{
+	float distance = Distance(point, GetGloabalPos());
+
+	return distance < Radius();
+}
+
+bool CircleCollider::IsRectCollision(RectCollider* collider)
+{
+	return false;
 }

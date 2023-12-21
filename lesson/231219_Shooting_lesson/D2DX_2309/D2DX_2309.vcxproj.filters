@@ -129,6 +129,12 @@
     <ClInclude Include="Framework\Collider\CircleCollider.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes\CollisionScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Collider\RectCollider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D2DX_2309.cpp">
@@ -221,6 +227,12 @@
     <ClCompile Include="Framework\Collider\CircleCollider.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\CollisionScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Collider\RectCollider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="D2DX_2309.rc">
@@ -241,6 +253,7 @@
     <FxCompile Include="Shaders\PixelUV.hlsl" />
     <FxCompile Include="Shaders\VertexPos.hlsl" />
     <FxCompile Include="Shaders\PixelPos.hlsl" />
+    <FxCompile Include="Shaders\PixelBGLight.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Libraries\DirectXTex\DirectXTex.inl">
