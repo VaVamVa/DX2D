@@ -33,15 +33,17 @@ void Plane::Move()
 
     if (KEY->Press('W'))
     {
-        velocity.y = 1;
+        //velocity.y = 1;
+        velocity = GetRight();  // 이미지가 오른쪽을 보기에..
         isMove = true;
     }
     if (KEY->Press('S'))
     {
-        velocity.y = -1;
+        //velocity.y = -1;
+        velocity = GetRight() * -1.0f;
         isMove = true;
     }
-    if (KEY->Press('A'))
+    /*if (KEY->Press('A'))
     {
         velocity.x = -1;
         isMove = true;
@@ -50,7 +52,7 @@ void Plane::Move()
     {
         velocity.x = 1;
         isMove = true;
-    }        
+    }        */
 
     if (!isMove)
         velocity = { 0, 0 };
@@ -72,15 +74,17 @@ void Plane::Move()
 
 void Plane::Rotate()
 {
-    direction = mousePos - localPosition;
+    /*direction = mousePos - localPosition;
    
     float angle = atan2(direction.y, direction.x);
     float degree = angle * 180 / XM_PI;
 
-    localRotation.z = angle;
+    localRotation.z = angle;*/
 
-    if (KEY->Press(VK_UP))
+    if (KEY->Press('A'))
         localRotation.z += DELTA;
+    if (KEY->Press('D'))
+        localRotation.z -= DELTA;
 }
 
 void Plane::Fire()

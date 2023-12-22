@@ -11,7 +11,10 @@ void Transform::UpdateWorld()
     R = XMMatrixRotationRollPitchYaw(localRotation.x, localRotation.y, localRotation.z);
     T = XMMatrixTranslation(localPosition.x, localPosition.y, 0);
 
-    world = S * R * T;
+    P = XMMatrixTranslation(pivot.x, pivot.y, 0.0f);
+    invP = XMMatrixInverse(nullptr, P);
+
+    world = invP * S * R * T * P;
 
     if (parent)
         world *= parent->world;
@@ -21,6 +24,13 @@ void Transform::UpdateWorld()
 
     XMStoreFloat2(&globalPosition, outT);
     XMStoreFloat2(&globalScale, outS);
+
+    // 행렬 decompose(분해)
+    // right 벡터는 world matrix의 (m11, m12, m13)
+    // up 벡터는 world matrix의 (m21, m22, m23)
+    XMStoreFloat4x4(&matWorld, world);
+    rightVector = Vector2(matWorld._11, matWorld._12);
+    upVector = Vector2(matWorld._21, matWorld._22);
 }
 
 void Transform::GUIRender()
@@ -48,6 +58,9 @@ void Transform::GUIRender()
 
         temp = tag + "_Scale";
         ImGui::DragFloat2(temp.c_str(), (float*)&localScale, 0.1f);
+
+        temp = tag + "_Pivot";
+        ImGui::DragFloat2(temp.c_str(), (float*)&pivot, 0.1f);
 
         //if (ImGui::Button("Save"))
         //    Save();

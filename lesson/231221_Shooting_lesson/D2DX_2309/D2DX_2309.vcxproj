@@ -172,6 +172,9 @@
     <ClInclude Include="Objects\Basic\GameObject.h" />
     <ClInclude Include="Objects\Basic\ObjectManager.h" />
     <ClInclude Include="Objects\Basic\Quad.h" />
+    <ClInclude Include="Objects\Pinball\Flipper.h" />
+    <ClInclude Include="Objects\Pinball\LeftFlipper.h" />
+    <ClInclude Include="Objects\Pinball\RightFlipper.h" />
     <ClInclude Include="Objects\ShootingGame\Bullet.h" />
     <ClInclude Include="Objects\ShootingGame\BulletManager.h" />
     <ClInclude Include="Objects\ShootingGame\Enemy.h" />
@@ -179,6 +182,7 @@
     <ClInclude Include="Objects\ShootingGame\Plane.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scenes\CollisionScene.h" />
+    <ClInclude Include="Scenes\PinballScene.h" />
     <ClInclude Include="Scenes\PlaneScene.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\SRTScene.h">
@@ -215,12 +219,16 @@
     <ClCompile Include="Objects\Basic\GameObject.cpp" />
     <ClCompile Include="Objects\Basic\ObjectManager.cpp" />
     <ClCompile Include="Objects\Basic\Quad.cpp" />
+    <ClCompile Include="Objects\Pinball\Flipper.cpp" />
+    <ClCompile Include="Objects\Pinball\LeftFlipper.cpp" />
+    <ClCompile Include="Objects\Pinball\RightFlipper.cpp" />
     <ClCompile Include="Objects\ShootingGame\Bullet.cpp" />
     <ClCompile Include="Objects\ShootingGame\BulletManager.cpp" />
     <ClCompile Include="Objects\ShootingGame\Enemy.cpp" />
     <ClCompile Include="Objects\ShootingGame\EnemyManager.cpp" />
     <ClCompile Include="Objects\ShootingGame\Plane.cpp" />
     <ClCompile Include="Scenes\CollisionScene.cpp" />
+    <ClCompile Include="Scenes\PinballScene.cpp" />
     <ClCompile Include="Scenes\PlaneScene.cpp" />
     <ClCompile Include="Scenes\SRTScene.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

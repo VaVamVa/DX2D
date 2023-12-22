@@ -3,6 +3,14 @@
 class RectCollider : public Collider
 {
 public:
+	struct ObbDesc
+	{
+		Vector2 position;
+		Vector2 axis[2];
+		Vector2 halfSize;
+	};
+
+public:
 	RectCollider(Vector2 size);
 	~RectCollider() = default;
 
@@ -17,6 +25,11 @@ public:
 	Vector2 LeftBottom();
 	Vector2 RightTop();
 	Vector2 RightBottom();
+
+	ObbDesc GetObbDesc();
+
+private:
+	bool IsSeperate(Vector2 seperateAxis, ObbDesc box1, ObbDesc box2);
 
 private:
 	Vector2 size;
