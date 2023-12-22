@@ -6,6 +6,7 @@ public:
     Transform();
 
     void UpdateWorld();
+    void GUIRender();
 
     bool IsActive();
     void SetActive(bool isActive) { this->isActive = isActive; }

@@ -12,6 +12,12 @@ GameManager::GameManager()
     Timer::Get();
     Random::Get();
 
+    ImGui::CreateContext();
+    ImGui::StyleColorsDark();
+
+    ImGui_ImplWin32_Init(hWnd);
+    ImGui_ImplDX11_Init(DEVICE, DC);
+
     //scene = new TutorialScene();
     //scene = new SRTScene();
     scene = new CollisionScene();
@@ -26,6 +32,11 @@ GameManager::~GameManager()
     Keyboard::Delete();
     Timer::Delete();
     ObjectManager::Delete();
+
+    ImGui_ImplDX11_Shutdown();
+    ImGui_ImplWin32_Shutdown();
+
+    ImGui::DestroyContext();
 }
 
 void GameManager::Update()
@@ -46,7 +57,19 @@ void GameManager::Render()
     ObjectManager::Get()->Render();
     scene->Render();
     Collider::TotalRender();
+
+    ImGui_ImplDX11_NewFrame();
+    ImGui_ImplWin32_NewFrame();
+    
+    ImGui::NewFrame();
+
+    string fps = "FPS : " + to_string(Timer::Get()->GetFPS());
+    ImGui::Text(fps.c_str());
+
     scene->PostRender();
+
+    ImGui::Render();
+    ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
     Device::Get()->Present();
 }

@@ -160,6 +160,14 @@
     <ClInclude Include="Framework\Utility\Singleton.h" />
     <ClInclude Include="Framework\Utility\Timer.h" />
     <ClInclude Include="Libraries\DirectXTex\DirectXTex.h" />
+    <ClInclude Include="Libraries\ImGui\imconfig.h" />
+    <ClInclude Include="Libraries\ImGui\imgui.h" />
+    <ClInclude Include="Libraries\ImGui\imgui_impl_dx11.h" />
+    <ClInclude Include="Libraries\ImGui\imgui_impl_win32.h" />
+    <ClInclude Include="Libraries\ImGui\imgui_internal.h" />
+    <ClInclude Include="Libraries\ImGui\imstb_rectpack.h" />
+    <ClInclude Include="Libraries\ImGui\imstb_textedit.h" />
+    <ClInclude Include="Libraries\ImGui\imstb_truetype.h" />
     <ClInclude Include="Manager\GameManager.h" />
     <ClInclude Include="Objects\Basic\GameObject.h" />
     <ClInclude Include="Objects\Basic\ObjectManager.h" />

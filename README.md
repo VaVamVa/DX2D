@@ -167,37 +167,93 @@ DirectXTex_Desktop_2022_Win10 solution pjt 열고 빌드하기.
 ### 7. 231221
 <br>
 
-1. 새로운 [PxielBGLightShader](./lesson/231219_Shooting_lesson/D2DX_2309\Shaders/PixelBGLight.hlsl) 생성.
+#### ShootingScene
+
+1. 새로운 [PxielBGLightShader](./lesson/231219_Shooting_lesson/D2DX_2309/Shaders/PixelBGLight.hlsl) 생성.
     - Texture와 색상을 곱하여 Shade 함.
     - shader를 angle에 따라 rotate 해줌 (회전 행렬)
 
-2. 
+2. `bg2` Texture를 따로 생성해준 후, 이를 `1`의 새로운 PixelShader에 적용. `PSSet(1)`
 
-3. 새로운 CollisionScene 생성
+#### CollisionScene
 
-#### 4. `imgui` library 적용법
+1. `imgui` 적용.
+
+#### `imgui` library 적용법
 
 1. 솔루션 우클릭->새 프로젝트-> "정적 라이브러리" 추가, 원래 있던 소스, 헤더파일 삭제
-2. `imgui` 최신버전 다운로드 후 아래의 파일들 솔루션에 복사 & 붙여넣기
-    - 
+2. `imgui` 최신버전 다운로드 후 아래의 파일들 솔루션에 복사 & 붙여넣기, 프로젝트에 포함
+    - `imgui-version/imgui-version`
+    ![ImGuiFiles](./DocuImages/ImGuiFiles.jpg)
+    - `imgui-version/imgui-version/backends`
+    ![ImGuiBackendsFiles](./DocuImages/ImGuiBackendsFiles.jpg)
 3. `ImGui` 솔루션에서 미리 컴파일된 헤더 사용하지 않음 한 후 빌드
-4. 생성된 ???.lib 파일을 본인 프로젝트의 Lib에 붙여넣기
-5. 잠시 생성했던 솔루션 삭제
-6. `Framework.h` 에서
+4. `pjt/x64/Debug` 생성된 `본인이 만든 정적 라이브러리 솔루션 이름.lib`(`ImGui`) 파일을 본인 프로젝트의 `Libraries`에 붙여넣기
+5. `pjt/Libraries`에 `ImGui` 폴더 생성 후, 정적 라이브러리 솔루션에 존재하는 모든 Header 파일 복사 & 붙여넣기, 프로젝트에 포함
+    - (+) 유형별로 정리하면 헤더파일만 모을 수 있음.
+6. 정적 라이브러리 (생성용) 솔루션 제거(&삭제)
+7. `Framework.h` 에서 필요한 헤더파일들 포함시키고, 그 구현부를 `4`의 정적 라이브러리와 연결
 ```
 #include "Libraries/ImGui/" + (imgui.h, imgui_impl_dx11.h, imgui_impl_win32.h)
 #pragma comment(lib, "Libraries/Lib/ImGui.lib")
 ```
-7. `main.cpp` 에서 ``를 `WinProc` 함수 위에 입력
-8. `GameManager` 에서 아래의 코드 입력
+
+8. `main.cpp` 에서 `WinProc` 함수 위에 정적 라이브러리의 전역변수 가져오기
+```cpp
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 ```
+
+9. `WinProc` 함수에서 `ImGui` 수행용 함수 호출
+```cpp
+if (ImGui_ImplWin32_WndProcHandler(hWnd, message, wParam, lParam))
+        return true;
 ```
-9. `GameManager::Render()`에서 아래의 코드 입력
+
+10. `GameManager` 생성자에서 아래의 코드 입력
+```cpp
+ImGui::CreateContext();
+ImGui::StyleColorsDark();
+
+ImGui_ImplWin32_Init(hWnd);
+ImGui_ImplDX11_Init(DEVICE, DC);
 ```
+
+11. `GameManager` 소멸자에서 아래의 코드 입력
+```cpp
+ImGui_ImplDX11_Shutdown();
+ImGui_ImplWin32_Shutdown();
+
+ImGui::DestroyContext();
+```
+
+12. `GameManager::Render()`에서 `scene Render` 이후, `scene PostRender` 이전에 아래의 코드 입력
+```cpp
+ImGui_ImplDX11_NewFrame();
+ImGui_ImplWin32_NewFrame();
+    
+ImGui::NewFrame();
+```
+
+13. `GameManager::Render()`에서 `scene PostRender` 이후에 아래의 코드 입력
+```cpp
+ImGui::Render();
+ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+```
+
+- (+) FPS 를 ImGui 컴포넌트에 띄우는 법.
+    - `GameManager::Render()` 에서 `scene PostRender` 직전에.
+```cpp
+string fps = "FPS : " + to_string(Timer::Get()->GetFPS());
+ImGui::Text(fps.c_str());
 ```
 
 - 기능 : 디버깅, 에디터 등
 
-4. 회전한 네모 객체 Point Collision 구현.
+2. `Vector2`와 행렬을 계산해 주기 위한 연산자 오버로딩 구현
+    - [Vector2](https://github.com/VaVamVa/DX2D/blob/main/lesson/231219_Shooting_lesson/D2DX_2309/Framework/Math/Vector2.h)
 
+3. 회전한 네모 객체 `Point Collision` 구현.
+    - 회전한 상태는 world buffer에 의한것.
+    - 이에 역행렬을 구해 곱해주면 (0,0) 위치 회전하기 전 사각형 객체로 되돌릴 수 있음
+    - 똑같이 `Point`도 이 역행렬을 곱해주고, 판단.
 - [content_diff]()

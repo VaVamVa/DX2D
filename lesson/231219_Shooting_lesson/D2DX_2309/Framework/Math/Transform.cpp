@@ -23,6 +23,44 @@ void Transform::UpdateWorld()
     XMStoreFloat2(&globalScale, outS);
 }
 
+void Transform::GUIRender()
+{
+    if (ImGui::TreeNode((tag + "_Transform").c_str()))
+    {
+        ImGui::Text(tag.c_str());
+
+        ImGui::Checkbox("Active", &isActive);
+
+        string temp = tag + "_Pos";
+        ImGui::DragFloat2(temp.c_str(), (float*)&localPosition, 1.0f);
+
+        temp = tag + "_Rot";
+        Float3 rot;
+        rot.x = XMConvertToDegrees(localRotation.x);
+        rot.y = XMConvertToDegrees(localRotation.y);
+        rot.z = XMConvertToDegrees(localRotation.z);
+
+        ImGui::DragFloat3(temp.c_str(), (float*)&rot, 1.0f, -180, 180);
+
+        localRotation.x = XMConvertToRadians(rot.x);
+        localRotation.y = XMConvertToRadians(rot.y);
+        localRotation.z = XMConvertToRadians(rot.z);
+
+        temp = tag + "_Scale";
+        ImGui::DragFloat2(temp.c_str(), (float*)&localScale, 0.1f);
+
+        //if (ImGui::Button("Save"))
+        //    Save();
+        //
+        //ImGui::SameLine();
+        //
+        //if (ImGui::Button("Load"))
+        //    Load();
+
+        ImGui::TreePop();
+    }
+}
+
 bool Transform::IsActive()
 {
     if (parent == nullptr)

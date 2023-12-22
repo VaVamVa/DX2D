@@ -12,10 +12,6 @@ RectCollider::RectCollider(Vector2 size)
     vertexBuffer = new VertexBuffer(vertices.data(), sizeof(VertexPos), vertices.size());
 }
 
-RectCollider::~RectCollider()
-{
-}
-
 bool RectCollider::IsPointCollision(const Vector2 point)
 {
     return false;

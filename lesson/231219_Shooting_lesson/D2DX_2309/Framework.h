@@ -48,6 +48,12 @@
 #include "Libraries/DirectXTex/DirectXTex.h"
 #pragma comment(lib, "Libraries/Lib/DirectXTex.lib")
 
+//ImGui
+#include "Libraries/ImGui/imgui.h"
+#include "Libraries/ImGui/imgui_impl_dx11.h"
+#include "Libraries/ImGui/imgui_impl_win32.h"
+#pragma comment(lib, "Libraires/Lib/ImGui.lib")
+
 using namespace std;
 using namespace DirectX;
 

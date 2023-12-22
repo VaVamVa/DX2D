@@ -30,4 +30,6 @@ void CollisionScene::Render()
 
 void CollisionScene::PostRender()
 {
+	for (Collider* collider : colliders)
+		collider->GUIRender();
 }
