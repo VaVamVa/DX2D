@@ -256,4 +256,4 @@ ImGui::Text(fps.c_str());
     - 회전한 상태는 world buffer에 의한것.
     - 이에 역행렬을 구해 곱해주면 (0,0) 위치 회전하기 전 사각형 객체로 되돌릴 수 있음
     - 똑같이 `Point`도 이 역행렬을 곱해주고, 판단.
-- [content_diff]()
+- [content_diff](https://github.com/VaVamVa/DX2D/commit/fcf2e6827baec335a7dfcafef90777ecd0b06462)
