@@ -5,8 +5,7 @@
 
 #define WIN_START_X 50
 #define WIN_START_Y 50
-
-#define SCREEN_WIDTH 600
+#define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 800
 
 #define CENTER_X (SCREEN_WIDTH * 0.5f)
@@ -64,6 +63,9 @@ typedef XMMATRIX Matrix;
 #include "Framework/Utility/Keyboard.h"
 #include "Framework/Utility/Timer.h"
 #include "Framework/Utility/Random.h"
+
+#include "Framework/Utility/BinaryReader.h"
+#include "Framework/Utility/BinaryWriter.h"
 
 #include "Framework/Math/Vector2.h"
 #include "Framework/Math/GameMath.h"

@@ -7,14 +7,14 @@ public:
     Quad(wstring textureFile, int depth = 0);
     ~Quad();
         
-    virtual void Update() override {}
+    virtual void Update() override;
     virtual void Render() override;
 
     Vector2 GetSize() { return size; }
 private:
     void Create();
 
-private:
+protected:
     Vector2 size;    
 
     VertexBuffer* vertexBuffer;

@@ -24,6 +24,7 @@ public:
 public:
 	static void TotalUpdate();
 	static void TotalRender();
+	static void TotalGUIRender();
 	static void Delete();
 
 protected:

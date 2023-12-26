@@ -50,7 +50,7 @@ Shaders/ Tutorial.hlsl : structs for Vertex & Pixel , 3 const buffers for wvp tr
     
 
 #### 과제
-- [DirectX 렌더링 파이프라인](Docu/DX2D_Rendering_Pipeline.md)
+- [DirectX 렌더링 파이프라인](https://github.com/VaVamVa/DX2D/blob/main/Docu/DX2D_Rendering_Pipeline.md)
 
 <br>
 
@@ -220,3 +220,38 @@ Objects for init vertices to vertex buffer&shader (with pixel buffer&shader)
         - [Environment.cpp](https://github.com/VaVamVa/DX2D/blob/main/lesson/231221_Shooting_lesson/D2DX_2309/Framework/Environment/Environment.cpp)
 
 - [content_diff](https://github.com/VaVamVa/DX2D/commit/0003fe3692b259f71ac256e62ede361bb9013f1e)
+
+<br>
+  
+### 7. 231226
+<br>
+
+#### binary wirter/reader 
+`0b Type write&read`
+
+1. `void*`를 이용하여 자료형에 대응되는 자료들 저장 및 읽기.
+    - 순서 중요.
+
+2. `void*` data, LPC
+
+3. `.srt` 형식으로 저장
+
+#### Object Editing
+
+1. `Transform::GUIRender`를 이용해 각 객체와 `collider`를 GUI Editor로 표현한다.
+2. 각 Objects와 Collider를 손으로 edit 한 뒤(hard coding) `Save`
+3. 객체들의 생성자에 `Transform::Load()`를 이용해 이전의 상태 복원
+
+- [Pinball/Objects](https://github.com/VaVamVa/DX2D/tree/main/lesson/231222_RectCollider/D2DX_2309/Objects/Pinball)
+
+#### 선형보간을 이용해 `Flipper::Control 구현`
+
+- [GameMath.h](https://github.com/VaVamVa/DX2D/blob/main/lesson/231222_RectCollider/D2DX_2309/Framework/Math/GameMath.h)
+- [Flipper.cpp](https://github.com/VaVamVa/DX2D/blob/main/lesson/231222_RectCollider/D2DX_2309/Objects/Pinball/Flipper.cpp)
+
+<br>
+
+- [content_diff]()
+
+#### 과제
+- Pinball

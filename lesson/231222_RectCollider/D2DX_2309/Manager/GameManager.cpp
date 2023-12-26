@@ -2,8 +2,8 @@
 
 //#include "Scenes/TutorialScene.h"
 //#include "Scenes/SRTScene.h"
-#include "Scenes/PlaneScene.h"
-#include "Scenes/CollisionScene.h"
+//#include "Scenes/PlaneScene.h"
+//#include "Scenes/CollisionScene.h"
 #include "Scenes/PinballScene.h"
 
 GameManager::GameManager()
@@ -71,6 +71,7 @@ void GameManager::Render()
 
     scene->PostRender();
     ObjectManager::Get()->PostRender();
+    Collider::TotalGUIRender();
 
     ImGui::Render();
     ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());

@@ -19,6 +19,11 @@ Quad::~Quad()
     delete indexBuffer; 
 }
 
+void Quad::Update()
+{
+    UpdateWorld();
+}
+
 void Quad::Render()
 {
     if (!IsActive()) return;

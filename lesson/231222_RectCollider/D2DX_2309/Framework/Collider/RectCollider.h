@@ -11,7 +11,7 @@ public:
 	};
 
 public:
-	RectCollider(Vector2 size);
+	RectCollider(Vector2 size = {1.0f, 1.0f});
 	~RectCollider() = default;
 
 	virtual bool IsPointCollision(const Vector2& point) override;

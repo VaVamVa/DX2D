@@ -72,6 +72,14 @@ void Collider::TotalRender()
 		collider->Render();
 }
 
+void Collider::TotalGUIRender()
+{
+	if (!isDraw) return;
+
+	for (Collider* collider : colliders)
+		collider->GUIRender();
+}
+
 void Collider::Delete()
 {
 	for (Collider* collider : colliders)
