@@ -3,9 +3,9 @@
 
 PinballScene::PinballScene()
 {
-	GameObject* bg = OBJ->Add(new Quad(L"Textures/Pinball/Background.png"));
+	bg = (Quad*)OBJ->Add(new Quad(L"Textures/Pinball/Background.png"));
 	bg->SetPos(CENTER);
-	bg->SetScale(2, 2);
+	bg->SetScale(Vector2(SCREEN_WIDTH, SCREEN_HEIGHT) / bg->GetSize());
 	bg->UpdateWorld();
 }
 
