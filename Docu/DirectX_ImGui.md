@@ -3,9 +3,9 @@
 1. 솔루션 우클릭->새 프로젝트-> "정적 라이브러리" 추가, 원래 있던 소스, 헤더파일 삭제
 2. `imgui` 최신버전 다운로드 후 아래의 파일들 솔루션에 복사 & 붙여넣기, 프로젝트에 포함
     - `imgui-version/imgui-version` <br>
-    ![ImGuiFiles](https://github.com/VaVamVa/DX2D/tree/main/DocuImages/ImGuiFiles.JPG)
+    ![ImGuiFiles](https://github.com/VaVamVa/DX2D/blob/main/DocuImages/ImGuiFiles.JPG)
     - `imgui-version/imgui-version/backends` <br>
-    ![ImGuiBackendsFiles](https://github.com/VaVamVa/DX2D/tree/main/DocuImages/ImGuiBackendsFiles.JPG)
+    ![ImGuiBackendsFiles](https://github.com/VaVamVa/DX2D/blob/main/DocuImages/ImGuiBackendsFiles.JPG)
 3. `ImGui` 솔루션에서 미리 컴파일된 헤더 사용하지 않음 한 후 빌드
 4. `pjt/x64/Debug` 생성된 `본인이 만든 정적 라이브러리 솔루션 이름.lib`(`ImGui`) 파일을 본인 프로젝트의 `Libraries`에 붙여넣기
 5. `pjt/Libraries`에 `ImGui` 폴더 생성 후, 정적 라이브러리 솔루션에 존재하는 모든 Header 파일 복사 & 붙여넣기, 프로젝트에 포함
