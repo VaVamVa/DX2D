@@ -44,12 +44,12 @@ Shader : GPU 언어. - 우리가 짜야하는 스크립트
     - 만약 자동으로 작업관리자 Manage bar 보일경우 해당 버튼 클릭 후 추가설치 X
 - 프로젝트 속성-HLSL 컴파일러-진입점 이름 : VS, 셰이더 모델 ShaderModel 5.0 (DX11 용)
 - 추가-새 항목-Visual C++-HLSL-헤더파일
-    - [예시](./D2DX/Shaders/Tutorial.hlsl)
+    - [예시](https://github.com/VaVamVa/DX2D/blob/main/lesson/D2DX/D2DX/Shaders/Tutorial.hlsl)
 <br>
 
 ### 2. 책 내용 주제
 
-![pipeline](./images/Rendering_Pipeline_Levels.jpg)
+![pipeline](https://github.com/VaVamVa/DX2D/tree/main/DocuImages/Rendering_Pipeline_Levels.jpg)
 
 1. (5.5) Input Assemler : 메모리에서 기하 자료를 읽어서 기하학적 기본도형 조립
 2. (5.6) Vertex Shader : (개발자 이용) 정점 하나를 받아서 정점 하나를 <b>출력</b>하는 함수들의 수행
