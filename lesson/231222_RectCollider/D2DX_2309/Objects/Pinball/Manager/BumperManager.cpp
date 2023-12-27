@@ -19,15 +19,17 @@ void BumperManager::CreateNewBumper(int count)
 {
     FOR(count)
     {
+        bool flag = true;
         for (Bumper* bumper : bumpers)
         {
             if (!bumper->IsActive())
             {
                 bumper->SetActive(true);
-                continue;
+                flag = false;
+                break;
             }
         }
-        if (bumpers.size() < POOL_SIZE)
+        if (flag && bumpers.size() < POOL_SIZE)
             bumpers.push_back(new Bumper(bumpers.size() + i));
     }
 }
@@ -41,7 +43,7 @@ void BumperManager::DeactivateBumper(int count)
             if (bumpers[j]->IsActive())
             {
                 bumpers[j]->SetActive(false);
-                continue;
+                return;
             }
         }
     }
