@@ -12,6 +12,11 @@ public:
     {
         localPosition += velocity;
     }
+    void Translate(const float x, const float y)
+    {
+        localPosition.x += x;
+        localPosition.y += y;
+    }
     void Rotate(const float& angle)
     {
         localRotation.z += angle;

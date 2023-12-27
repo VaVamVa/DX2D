@@ -3,7 +3,7 @@
 class Ball : public Quad
 {
 private:
-	const float GRAVITY = 9.8f;
+	const float GRAVITY = 0.098f;
 
 public:
 	Ball();
@@ -17,6 +17,7 @@ public:
 	void SetVelocity(Vector2 direction) { this->velocity = direction; }
 
 private:
+	void Spawn();
 
 	void CollideCheck();
 

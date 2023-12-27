@@ -3,7 +3,8 @@
 class FlipperManager : public Singleton<FlipperManager>
 {
 private:
-	const float POWER = 10.0f;
+	const float POWER = 980.0f;
+	const float PUSH_LAND_POWER = 300.0f;
 
 private:
 	friend Singleton;

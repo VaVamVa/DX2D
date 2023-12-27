@@ -27,6 +27,7 @@ void PinballScene::Update()
 void PinballScene::Render()
 {
 	bg->Render();
+	WallManager::Get()->Render();
 }
 
 void PinballScene::PostRender()

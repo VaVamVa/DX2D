@@ -18,21 +18,30 @@ Ball::Ball()
 	collider->SetParent(this);
 	collider->Load();
 
-	localPosition.x = Random::Get()->Range(130.0f + size.x, 470.0f - size.x);
-	localPosition.y = 600.0f;
+	Spawn();
 	UpdateWorld();
 }
 
 void Ball::Update()
 {
+	velocity.y -= GRAVITY;
+
 	CollideCheck();
 
-	velocity.y -= GRAVITY * DELTA;
-
 	if (localPosition.y - GetSize().y <= 0)
+	{
 		velocity.y = 0.0f;
-	Translate(velocity);
+		localPosition.x = Random::Get()->Range(130.0f + size.x, 470.0f - size.x);
+		localPosition.y = 600.0f;
+	}
+	Translate(velocity * DELTA);
 	UpdateWorld();
+}
+
+void Ball::Spawn()
+{
+	localPosition.x = Random::Get()->Range(130.0f + size.x, 470.0f - size.x);
+	localPosition.y = 600.0f;
 }
 
 void Ball::CollideCheck()

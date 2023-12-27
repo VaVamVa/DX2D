@@ -59,6 +59,19 @@ struct Vector2 : public Float2
         y /= s;
     }
 
+    bool operator==(const Vector2& v)
+    {
+        if (x == v.x && y == v.y)
+            return true;
+        return false;
+    }
+    bool operator!=(const Vector2& v)
+    {
+        if (x == v.x && y == v.y)
+            return false;
+        return true;
+    }
+
     Vector2 operator* (const Matrix& matrix) const
     {
         Float2 coord(x, y);
