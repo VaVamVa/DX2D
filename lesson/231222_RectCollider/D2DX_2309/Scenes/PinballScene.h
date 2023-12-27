@@ -11,5 +11,8 @@ public:
 	virtual void PostRender() override;
 
 private:
+	void CreateBg();
+
+private:
 	Quad* bg;
 };

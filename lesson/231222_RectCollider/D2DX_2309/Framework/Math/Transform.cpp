@@ -67,6 +67,11 @@ void Transform::GUIRender()
         if (ImGui::Button("Load"))
             Load();
 
+        ImGui::SameLine();
+
+        if (ImGui::Button("Del"))
+            Delete();
+
         ImGui::TreePop();
     }
 }
@@ -102,11 +107,11 @@ void Transform::Save()
     delete writer;
 }
 
-void Transform::Load()
+bool Transform::Load()
 {
     BinaryReader* reader = new BinaryReader("TextData/Transforms/" + tag + ".srt");
 
-    if (reader->IsFailed()) return;
+    if (reader->IsFailed()) return false;
 
     localPosition.x = reader->Float();
     localPosition.y = reader->Float();
@@ -122,4 +127,12 @@ void Transform::Load()
     pivot.y = reader->Float();
 
     delete reader;
+
+    return true;
+}
+
+bool Transform::Delete()
+{
+    string fileName = "TextData/Transforms/" + tag + ".srt";
+    return DeleteFileA(fileName.c_str());
 }

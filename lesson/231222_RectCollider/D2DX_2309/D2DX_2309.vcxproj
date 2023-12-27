@@ -174,6 +174,11 @@
     <ClInclude Include="Objects\Basic\GameObject.h" />
     <ClInclude Include="Objects\Basic\ObjectManager.h" />
     <ClInclude Include="Objects\Basic\Quad.h" />
+    <ClInclude Include="Objects\Pinball\Manager\BumperManager.h" />
+    <ClInclude Include="Objects\Pinball\Manager\FlipperManager.h" />
+    <ClInclude Include="Objects\Pinball\Manager\WallManager.h" />
+    <ClInclude Include="Objects\Pinball\Wall.h" />
+    <ClInclude Include="Objects\Pinball\Ball.h" />
     <ClInclude Include="Objects\Pinball\Bumper.h" />
     <ClInclude Include="Objects\Pinball\Flipper.h" />
     <ClInclude Include="Objects\ShootingGame\Bullet.h" />
@@ -222,6 +227,11 @@
     <ClCompile Include="Objects\Basic\GameObject.cpp" />
     <ClCompile Include="Objects\Basic\ObjectManager.cpp" />
     <ClCompile Include="Objects\Basic\Quad.cpp" />
+    <ClCompile Include="Objects\Pinball\Manager\BumperManager.cpp" />
+    <ClCompile Include="Objects\Pinball\Manager\FlipperManager.cpp" />
+    <ClCompile Include="Objects\Pinball\Manager\WallManager.cpp" />
+    <ClCompile Include="Objects\Pinball\Wall.cpp" />
+    <ClCompile Include="Objects\Pinball\Ball.cpp" />
     <ClCompile Include="Objects\Pinball\Bumper.cpp" />
     <ClCompile Include="Objects\Pinball\Flipper.cpp" />
     <ClCompile Include="Objects\ShootingGame\Bullet.cpp" />

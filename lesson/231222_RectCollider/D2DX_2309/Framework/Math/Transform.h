@@ -23,7 +23,8 @@ public:
     void SetActive(bool isActive) { this->isActive = isActive; }
 
     void Save();
-    void Load();
+    bool Load();
+    bool Delete();
 
     Vector2 GetPos() { return localPosition;}
     float GetAngle() { return localRotation.z; }

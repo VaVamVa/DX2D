@@ -7,8 +7,6 @@ GameObject::GameObject(int depth) : depth(depth)
 	pixelShader = Shader::AddPS(L"PixelUV.hlsl");
 
 	worldBuffer = new MatrixBuffer();
-
-	OBJ->Add(this);
 }
 
 GameObject::~GameObject()

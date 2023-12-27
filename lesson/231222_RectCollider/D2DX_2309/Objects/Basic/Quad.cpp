@@ -21,6 +21,7 @@ Quad::~Quad()
 
 void Quad::Update()
 {
+    if (!IsActive()) return;
     UpdateWorld();
 }
 
