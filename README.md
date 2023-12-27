@@ -187,7 +187,7 @@ Objects for init vertices to vertex buffer&shader (with pixel buffer&shader)
 
 <br>
   
-### 7. 231222
+### 8. 231222
 <br>
 
 1. pivot rotate
@@ -223,7 +223,7 @@ Objects for init vertices to vertex buffer&shader (with pixel buffer&shader)
 
 <br>
   
-### 7. 231226
+### 9. 231226
 <br>
 
 #### binary wirter/reader 
@@ -251,7 +251,33 @@ Objects for init vertices to vertex buffer&shader (with pixel buffer&shader)
 
 <br>
 
-- [content_diff]()
+- [content_diff](https://github.com/VaVamVa/DX2D/commit/3390c26f67e75b2303b73776172af5fe2c27ff51)
 
 #### 과제
-- Pinball
+- [Pinball](https://github.com/VaVamVa/DX2D/commit/4fd60f6ccda46f09818f98d8887e4a178be52ab6)
+
+<br>
+  
+### 10. 231227
+<br>
+
+반사 벡터, 타점에 따른 반발 정도, 외적, push land(미완)
+    - [Flipper::CollisionBall](https://github.com/VaVamVa/DX2D/blob/main/lesson/231226_Pinball/D2DX_2309/Objects/Pinball/Flipper.cpp)
+
+#### 외적
+1. 좌표계에 따라 두 벡터를 외적하면 3차원 공간의 벡터가 결과로 나온다.
+2. 오른손 좌표계에 따라 음수 or 양수가 나온다.
+    - 들어가는 z 방향 => 양수, 나오는 z 방향 => 음수
+3. 이를 이용해 특정한 점이 한 직사각형에 대해 어느 방향에 존재하는 지 알 수 있다.
+```cpp
+// 2차원 기준
+v1 = (x1, y1, z1 = 0);
+v2 = (x2, y2, z2 = 0);
+crossVector = v1.x * v2.y - v2.x * v1.y;
+
+```
+- [GameMath::Cross](https://github.com/VaVamVa/DX2D/blob/main/lesson/231226_Pinball/D2DX_2309/Framework/Math/GameMath.h)
+
+<br>
+
+- [content_diff]()

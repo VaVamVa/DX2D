@@ -61,24 +61,58 @@ bool RectCollider::IsRectCollision(RectCollider* collider)
     return true;
 }
 
+GameMath::Direction RectCollider::GetDirection(const Vector2& point)
+{
+    Vector2 directionVector = (point - GetGlobalPos()).GetNormalized();
+    Vector2 leftTopVector = (LeftTop() - GetGlobalPos()).GetNormalized();
+    Vector2 rightTopVector = (RightTop() - GetGlobalPos()).GetNormalized();
+
+    // 좌우 (두 외적 값이 같다)
+    if (Cross(leftTopVector, directionVector) * Cross(rightTopVector, directionVector) > 0)
+    {
+        float rightAngle = abs(acosf(Dot(GetRight(), directionVector)));
+        float leftAngle = abs(acosf(Dot(GetLeft(), directionVector)));
+        //위의 두 내각을 비교하여 작은 쪽에 존재.
+        return rightAngle < leftAngle ? Direction::RIGHT : Direction::LEFT;
+    }
+    // 상하 (두 외적 값이 다르다.)
+    else if (Cross(leftTopVector, directionVector) * Cross(rightTopVector, directionVector) < 0)
+    {
+        float upAngle = abs(acosf(Dot(GetUp(), directionVector)));
+        float downAngle = abs(acosf(Dot(GetDown(), directionVector)));
+        //위의 두 내각을 비교하여 작은 쪽에 존재.
+        return upAngle < downAngle ? Direction::UP : Direction::DOWN;
+    }
+
+    return Direction::NONE;
+}
+
 Vector2 RectCollider::LeftTop()
 {
-    return Vector2();
+    Vector2 edge = Vector2(-size.x, +size.y) * 0.5f;
+
+    return edge * world;
 }
 
 Vector2 RectCollider::LeftBottom()
 {
-    return Vector2();
+    Vector2 edge = Vector2(-size.x, -size.y) * 0.5f;
+
+    return edge * world;
 }
 
 Vector2 RectCollider::RightTop()
 {
-    return Vector2();
+    Vector2 edge = Vector2(+size.x, +size.y) * 0.5f;
+
+    return edge * world;
 }
 
 Vector2 RectCollider::RightBottom()
 {
-    return Vector2();
+    Vector2 edge = Vector2(+size.x, -size.y) * 0.5f;
+
+    return edge * world;
 }
 
 RectCollider::ObbDesc RectCollider::GetObb()

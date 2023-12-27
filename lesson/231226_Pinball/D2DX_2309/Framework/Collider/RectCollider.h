@@ -17,6 +17,8 @@ public:
 	virtual bool IsPointCollision(const Vector2& point) override;
 	virtual bool IsCircleCollision(CircleCollider* collider) override;
 	virtual bool IsRectCollision(RectCollider* collider) override;
+	// 사각형 객체에 상대적으로 point가 어디 존재하는지.
+	GameMath::Direction GetDirection(const Vector2& point);
 
 	Vector2 Size() { return size * GetGlobalScale(); }
 	Vector2 Half() { return Size() * 0.5f; }

@@ -11,7 +11,11 @@ namespace GameMath
 
     float Clamp(const float& min, const float& max, const float& value);
 
+    //내적
     float Dot(const Vector2& v1, const Vector2& v2);
+    //외적
+    float Cross(const Vector2& v1, const Vector2& v2);
+    
 
     Vector2 RandomPos(const float& min, const float& max);
 

@@ -12,4 +12,5 @@ public:
 
 private:
 	Quad* bg;	
+	class Ball* ball;
 };

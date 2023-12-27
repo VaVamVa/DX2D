@@ -22,6 +22,11 @@ float GameMath::Dot(const Vector2& v1, const Vector2& v2)
     return v1.x * v2.x + v1.y * v2.y;
 }
 
+float GameMath::Cross(const Vector2& v1, const Vector2& v2)
+{
+    return v1.x * v2.y - v2.x * v1.y;
+}
+
 Vector2 GameMath::RandomPos(const float& min, const float& max)
 {
     return Vector2(Random::Get()->Range(min, max),

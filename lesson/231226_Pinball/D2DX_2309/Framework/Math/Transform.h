@@ -30,7 +30,9 @@ public:
     Vector2 GetScale() { return localScale; }
 
     Vector2 GetRight() { return right.GetNormalized(); }
+    Vector2 GetLeft() { return right.GetNormalized() * -1.0f; }
     Vector2 GetUp() { return up.GetNormalized(); }
+    Vector2 GetDown() { return up.GetNormalized() * -1.0f; }
 
     void SetTag(string tag) { this->tag = tag; }
     void SetPos(Vector2 pos) { localPosition = pos; }
