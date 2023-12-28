@@ -25,7 +25,7 @@ Shader 스크립트 만들기 (Vertex Shader, Pixel Shader) with Rendering Pipel
         - 수업 pjt의 경우, VS가 첫 함수이므로 VS를 진입점으로 잡고, Shader Model은 DX11에서 version 5.0으로 지정.
 - [포프의_쉐이더_입문강좌_1](https://blog.popekim.com/ko/2011/11/29/intro-to-shader-01-what-is-shader-part-1.html)
 #### 과제
-- [n각형 그리기](lesson/D2DX/DX2D_Polygon.md)
+- [n각형 그리기](https://github.com/VaVamVa/DX2D/blob/main/Docu/DX2D_Polygon.md)
     - [content_diff](https://github.com/VaVamVa/DX2D/commit/d24c9f0f0a10abf64334369e41181b60a2b805aa)
 
 <br>
@@ -79,7 +79,7 @@ Objects for init vertices to vertex buffer&shader (with pixel buffer&shader)
 #### 과제
 - [Plane](https://github.com/VaVamVa/DX2D/lesson/DX2DwithFramework/DX2DwithFramework/Scenes/PlaneScene.h)
     - [content_diff](https://github.com/VaVamVa/DX2D/commit/f27113ed0ee3f6be64364c921f56baa970dc3b4e)
-- [Plane_codu](https://github.com/VaVamVa/DX2D/lesson/DX2DwithFramework/DX2D_SRTmatrix.md)
+- [Matrix_docu](https://github.com/VaVamVa/DX2D/blob/main/Docu/DX2D_SRTmatrix.md)
 
 <br>
 
@@ -262,7 +262,7 @@ Objects for init vertices to vertex buffer&shader (with pixel buffer&shader)
 <br>
 
 반사 벡터, 타점에 따른 반발 정도, 외적, push land(미완)
-    - [Flipper::CollisionBall](https://github.com/VaVamVa/DX2D/blob/main/lesson/231226_Pinball/D2DX_2309/Objects/Pinball/Flipper.cpp)
+- [Flipper::CollisionBall](https://github.com/VaVamVa/DX2D/blob/main/lesson/231226_Pinball/D2DX_2309/Objects/Pinball/Flipper.cpp)
 
 #### 외적
 1. 좌표계에 따라 두 벡터를 외적하면 3차원 공간의 벡터가 결과로 나온다.
@@ -280,4 +280,5 @@ crossVector = v1.x * v2.y - v2.x * v1.y;
 
 <br>
 
-- [content_diff]()
+- [content_diff](https://github.com/VaVamVa/DX2D/commit/916dc2bbcb3875198a25e581cbb80a8fafd56859)
+
